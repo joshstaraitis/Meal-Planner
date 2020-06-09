@@ -1,0 +1,28 @@
+C:\Users\stara\Desktop\FoodPlannerProject\Food Planner 2\bin\Debug\Food Planner 2.exe.config
+C:\Users\stara\Desktop\FoodPlannerProject\Food Planner 2\bin\Debug\Food Planner 2.exe.manifest
+C:\Users\stara\Desktop\FoodPlannerProject\Food Planner 2\bin\Debug\Food Planner 2.application
+C:\Users\stara\Desktop\FoodPlannerProject\Food Planner 2\bin\Debug\Food Planner 2.exe
+C:\Users\stara\Desktop\FoodPlannerProject\Food Planner 2\bin\Debug\Food Planner 2.pdb
+C:\Users\stara\Desktop\FoodPlannerProject\Food Planner 2\obj\Debug\Food Planner 2.csprojAssemblyReference.cache
+C:\Users\stara\Desktop\FoodPlannerProject\Food Planner 2\obj\Debug\Food_Planner_2.mainNew.resources
+C:\Users\stara\Desktop\FoodPlannerProject\Food Planner 2\obj\Debug\Food_Planner_2.Properties.Resources.resources
+C:\Users\stara\Desktop\FoodPlannerProject\Food Planner 2\obj\Debug\Food Planner 2.csproj.GenerateResource.cache
+C:\Users\stara\Desktop\FoodPlannerProject\Food Planner 2\obj\Debug\Food Planner 2.csproj.CoreCompileInputs.cache
+C:\Users\stara\Desktop\FoodPlannerProject\Food Planner 2\obj\Debug\Food Planner 2.exe.manifest
+C:\Users\stara\Desktop\FoodPlannerProject\Food Planner 2\obj\Debug\Food Planner 2.application
+C:\Users\stara\Desktop\FoodPlannerProject\Food Planner 2\obj\Debug\Food Planner 2.exe
+C:\Users\stara\Desktop\FoodPlannerProject\Food Planner 2\obj\Debug\Food Planner 2.pdb
+C:\Users\stara\Desktop\MealPlanner-master\bin\Debug\Food Planner 2.exe.config
+C:\Users\stara\Desktop\MealPlanner-master\bin\Debug\Food Planner 2.exe.manifest
+C:\Users\stara\Desktop\MealPlanner-master\bin\Debug\Food Planner 2.application
+C:\Users\stara\Desktop\MealPlanner-master\bin\Debug\Food Planner 2.exe
+C:\Users\stara\Desktop\MealPlanner-master\bin\Debug\Food Planner 2.pdb
+C:\Users\stara\Desktop\MealPlanner-master\obj\Debug\Food Planner 2.csprojAssemblyReference.cache
+C:\Users\stara\Desktop\MealPlanner-master\obj\Debug\Food_Planner_2.mainNew.resources
+C:\Users\stara\Desktop\MealPlanner-master\obj\Debug\Food_Planner_2.Properties.Resources.resources
+C:\Users\stara\Desktop\MealPlanner-master\obj\Debug\Food Planner 2.csproj.GenerateResource.cache
+C:\Users\stara\Desktop\MealPlanner-master\obj\Debug\Food Planner 2.csproj.CoreCompileInputs.cache
+C:\Users\stara\Desktop\MealPlanner-master\obj\Debug\Food Planner 2.exe.manifest
+C:\Users\stara\Desktop\MealPlanner-master\obj\Debug\Food Planner 2.application
+C:\Users\stara\Desktop\MealPlanner-master\obj\Debug\Food Planner 2.exe
+C:\Users\stara\Desktop\MealPlanner-master\obj\Debug\Food Planner 2.pdb
