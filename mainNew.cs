@@ -277,7 +277,6 @@ namespace Food_Planner_2
                     // Executes command against the connection object and returns the number of rows affected
                     command.ExecuteNonQuery();
                     // Calls ClearForm() Method to clear form data
-                    ClearForm();
                 }
             }
             catch (SqlException)
@@ -329,9 +328,9 @@ namespace Food_Planner_2
                     // Adds rows from dataAdapter into DataSet.
                     dataAdapter.Fill(dataSet);
                     // Sets dgv to read only
-                    dgvLookupSearch.ReadOnly = true;
+                    dgvFoodSearch.ReadOnly = true;
                     // sets dvg dataSource to dataSet Dataset
-                    dgvLookupSearch.DataSource = dataSet.Tables[0];
+                    dgvFoodSearch.DataSource = dataSet.Tables[0];
                     // Closes DB Connection.
                     connection.Close();
                 }
@@ -341,11 +340,49 @@ namespace Food_Planner_2
                 MessageBox.Show("Error searching food database.");
             }
         }
+        private void SearchDBConstraints()
+        {
+            try
+            {
+                // SqlConnection connection creates a connection to SQL DB using connectionString
+                // SqlCommand command stores a SQL statement/procedure to execute against SQL server DB
+                // Using statement provides simple syntax to ensure correct use of IDisposable objects.
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    // Stores SQL Query in command
+
+                    command.CommandText = @"SELECT * FROM food WHERE CALORIES <= '" + txtFFCal.Text + "' AND PROTEIN <= '" + txtFFProtein.Text + "' " +
+                            "AND CARBS <= '" + txtFFCarb.Text + "' AND FAT <= '" + txtFFFat.Text + "'";
+                    // Creates new SqlCommand with (the text of the query, and connection string) and saves in variable cmd.
+                    SqlCommand cmd = new SqlCommand(command.CommandText, connection);
+                    // Creates new SqlDataAdapter with specified cmd data
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
+                    // Creates new dataset
+                    DataSet dataSet = new DataSet();
+                    // Adds rows from dataAdapter into DataSet.
+                    dataAdapter.Fill(dataSet);
+                    // Sets dgv to read only
+                    dvgFoodCalc.ReadOnly = true;
+                    // sets dvg dataSource to dataSet Dataset
+                    dvgFoodCalc.DataSource = dataSet.Tables[0];
+                    // Closes DB Connection.
+                    connection.Close();
+                }
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Error searching food database.");
+            }
+
+        }
+        
         public mainNew()
         {
             InitializeComponent();
             UpdateDB();
             UpdateMealPlan();
+            UpdateMealPlanTotals();
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -380,6 +417,7 @@ namespace Food_Planner_2
         {
             AddToMealPlan();
             UpdateMealPlan();
+            UpdateMealPlanTotals();
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -392,7 +430,20 @@ namespace Food_Planner_2
         {
             DeleteFromMealPlan();
             UpdateMealPlan();
-            ClearForm();
+            UpdateMealPlanTotals();
+        }
+        private void btnFoodLimitSearch_Click(object sender, EventArgs e)
+        {
+            SearchDBConstraints();
+        }
+        private void btnAddToMealPlanFromLimit_Click(object sender, EventArgs e)
+        {
+            UpdateMealPlan();
+        }
+        private void dvgFoodCalc_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            AddToMealPlan();
+            UpdateMealPlan();
         }
     }
 }

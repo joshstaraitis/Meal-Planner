@@ -59,41 +59,56 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnAddToMealPlan = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.dgvLookupSearch = new System.Windows.Forms.DataGridView();
+            this.dgvFoodSearch = new System.Windows.Forms.DataGridView();
             this.txtFoodSearchName = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnFoodSearch = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnDeleteFromMealPlan = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.dvgFoodCalc = new System.Windows.Forms.DataGridView();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnFoodLimitSearch = new System.Windows.Forms.Button();
+            this.txtFFFat = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtFFCarb = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtFFProtein = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtFFCal = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMealPlan)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLookupSearch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFoodSearch)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgFoodCalc)).BeginInit();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvDB
             // 
             this.dgvDB.AllowUserToAddRows = false;
             this.dgvDB.AllowUserToDeleteRows = false;
+            this.dgvDB.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvDB.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvDB.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvDB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDB.Location = new System.Drawing.Point(829, 40);
+            this.dgvDB.Location = new System.Drawing.Point(678, 241);
             this.dgvDB.Name = "dgvDB";
             this.dgvDB.ReadOnly = true;
             this.dgvDB.RowHeadersWidth = 51;
             this.dgvDB.RowTemplate.Height = 24;
-            this.dgvDB.Size = new System.Drawing.Size(868, 271);
+            this.dgvDB.Size = new System.Drawing.Size(587, 271);
             this.dgvDB.TabIndex = 0;
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(184, 576);
+            this.btnClose.Location = new System.Drawing.Point(434, 180);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(151, 23);
+            this.btnClose.Size = new System.Drawing.Size(151, 128);
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -101,9 +116,9 @@
             // 
             // btnDBTest
             // 
-            this.btnDBTest.Location = new System.Drawing.Point(27, 576);
+            this.btnDBTest.Location = new System.Drawing.Point(277, 180);
             this.btnDBTest.Name = "btnDBTest";
-            this.btnDBTest.Size = new System.Drawing.Size(151, 23);
+            this.btnDBTest.Size = new System.Drawing.Size(151, 128);
             this.btnDBTest.TabIndex = 2;
             this.btnDBTest.Text = "Test DB Connection";
             this.btnDBTest.UseVisualStyleBackColor = true;
@@ -113,20 +128,22 @@
             // 
             this.dgvMealPlan.AllowUserToAddRows = false;
             this.dgvMealPlan.AllowUserToDeleteRows = false;
+            this.dgvMealPlan.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvMealPlan.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvMealPlan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMealPlan.Location = new System.Drawing.Point(829, 355);
+            this.dgvMealPlan.Location = new System.Drawing.Point(678, 29);
             this.dgvMealPlan.Name = "dgvMealPlan";
             this.dgvMealPlan.ReadOnly = true;
             this.dgvMealPlan.RowHeadersWidth = 51;
             this.dgvMealPlan.RowTemplate.Height = 24;
-            this.dgvMealPlan.Size = new System.Drawing.Size(868, 244);
+            this.dgvMealPlan.Size = new System.Drawing.Size(587, 206);
             this.dgvMealPlan.TabIndex = 3;
             // 
             // btnCalcTotal
             // 
-            this.btnCalcTotal.Location = new System.Drawing.Point(16, 99);
+            this.btnCalcTotal.Location = new System.Drawing.Point(25, 93);
             this.btnCalcTotal.Name = "btnCalcTotal";
-            this.btnCalcTotal.Size = new System.Drawing.Size(195, 23);
+            this.btnCalcTotal.Size = new System.Drawing.Size(337, 23);
             this.btnCalcTotal.TabIndex = 4;
             this.btnCalcTotal.Text = "Calculate Meal Plan Totals";
             this.btnCalcTotal.UseVisualStyleBackColor = true;
@@ -211,18 +228,18 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.lblTotalCalories);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Location = new System.Drawing.Point(428, 17);
+            this.groupBox1.Location = new System.Drawing.Point(277, 20);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(395, 315);
+            this.groupBox1.Size = new System.Drawing.Size(395, 154);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Meal Plan Information";
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(135, 260);
+            this.btnSubmit.Location = new System.Drawing.Point(114, 260);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(105, 39);
+            this.btnSubmit.Size = new System.Drawing.Size(84, 23);
             this.btnSubmit.TabIndex = 34;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
@@ -232,7 +249,7 @@
             // 
             this.btnClear.Location = new System.Drawing.Point(24, 260);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(105, 39);
+            this.btnClear.Size = new System.Drawing.Size(84, 23);
             this.btnClear.TabIndex = 33;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -240,44 +257,44 @@
             // 
             // txtFat
             // 
-            this.txtFat.Location = new System.Drawing.Point(140, 218);
+            this.txtFat.Location = new System.Drawing.Point(90, 216);
             this.txtFat.Name = "txtFat";
-            this.txtFat.Size = new System.Drawing.Size(211, 22);
+            this.txtFat.Size = new System.Drawing.Size(118, 22);
             this.txtFat.TabIndex = 32;
             // 
             // txtCarbs
             // 
-            this.txtCarbs.Location = new System.Drawing.Point(140, 180);
+            this.txtCarbs.Location = new System.Drawing.Point(90, 178);
             this.txtCarbs.Name = "txtCarbs";
-            this.txtCarbs.Size = new System.Drawing.Size(211, 22);
+            this.txtCarbs.Size = new System.Drawing.Size(118, 22);
             this.txtCarbs.TabIndex = 31;
             // 
             // txtProtein
             // 
-            this.txtProtein.Location = new System.Drawing.Point(140, 142);
+            this.txtProtein.Location = new System.Drawing.Point(90, 140);
             this.txtProtein.Name = "txtProtein";
-            this.txtProtein.Size = new System.Drawing.Size(211, 22);
+            this.txtProtein.Size = new System.Drawing.Size(118, 22);
             this.txtProtein.TabIndex = 30;
             // 
             // txtCalories
             // 
-            this.txtCalories.Location = new System.Drawing.Point(140, 104);
+            this.txtCalories.Location = new System.Drawing.Point(90, 102);
             this.txtCalories.Name = "txtCalories";
-            this.txtCalories.Size = new System.Drawing.Size(211, 22);
+            this.txtCalories.Size = new System.Drawing.Size(118, 22);
             this.txtCalories.TabIndex = 29;
             // 
             // txtServing
             // 
-            this.txtServing.Location = new System.Drawing.Point(140, 66);
+            this.txtServing.Location = new System.Drawing.Point(90, 64);
             this.txtServing.Name = "txtServing";
-            this.txtServing.Size = new System.Drawing.Size(211, 22);
+            this.txtServing.Size = new System.Drawing.Size(118, 22);
             this.txtServing.TabIndex = 28;
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(140, 23);
+            this.txtName.Location = new System.Drawing.Point(90, 21);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(211, 22);
+            this.txtName.Size = new System.Drawing.Size(118, 22);
             this.txtName.TabIndex = 27;
             // 
             // label6
@@ -352,16 +369,16 @@
             this.groupBox2.Controls.Add(this.txtName);
             this.groupBox2.Location = new System.Drawing.Point(27, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(395, 320);
+            this.groupBox2.Size = new System.Drawing.Size(244, 296);
             this.groupBox2.TabIndex = 35;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Add Food";
             // 
             // btnAddToMealPlan
             // 
-            this.btnAddToMealPlan.Location = new System.Drawing.Point(173, 155);
+            this.btnAddToMealPlan.Location = new System.Drawing.Point(117, 155);
             this.btnAddToMealPlan.Name = "btnAddToMealPlan";
-            this.btnAddToMealPlan.Size = new System.Drawing.Size(152, 43);
+            this.btnAddToMealPlan.Size = new System.Drawing.Size(134, 32);
             this.btnAddToMealPlan.TabIndex = 43;
             this.btnAddToMealPlan.Text = "Add To Meal Plan";
             this.btnAddToMealPlan.UseVisualStyleBackColor = true;
@@ -369,23 +386,28 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(489, 155);
+            this.btnDelete.Location = new System.Drawing.Point(433, 155);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(152, 43);
+            this.btnDelete.Size = new System.Drawing.Size(179, 32);
             this.btnDelete.TabIndex = 42;
             this.btnDelete.Text = "Delete From Database";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // dgvLookupSearch
+            // dgvFoodSearch
             // 
-            this.dgvLookupSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLookupSearch.Location = new System.Drawing.Point(13, 51);
-            this.dgvLookupSearch.Name = "dgvLookupSearch";
-            this.dgvLookupSearch.RowHeadersWidth = 51;
-            this.dgvLookupSearch.RowTemplate.Height = 24;
-            this.dgvLookupSearch.Size = new System.Drawing.Size(763, 98);
-            this.dgvLookupSearch.TabIndex = 39;
+            this.dgvFoodSearch.AllowUserToAddRows = false;
+            this.dgvFoodSearch.AllowUserToDeleteRows = false;
+            this.dgvFoodSearch.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvFoodSearch.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvFoodSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFoodSearch.Location = new System.Drawing.Point(13, 51);
+            this.dgvFoodSearch.Name = "dgvFoodSearch";
+            this.dgvFoodSearch.ReadOnly = true;
+            this.dgvFoodSearch.RowHeadersWidth = 51;
+            this.dgvFoodSearch.RowTemplate.Height = 24;
+            this.dgvFoodSearch.Size = new System.Drawing.Size(599, 98);
+            this.dgvFoodSearch.TabIndex = 39;
             // 
             // txtFoodSearchName
             // 
@@ -394,15 +416,15 @@
             this.txtFoodSearchName.Size = new System.Drawing.Size(306, 22);
             this.txtFoodSearchName.TabIndex = 38;
             // 
-            // btnSearch
+            // btnFoodSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(15, 155);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(152, 43);
-            this.btnSearch.TabIndex = 37;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.btnFoodSearch.Location = new System.Drawing.Point(15, 155);
+            this.btnFoodSearch.Name = "btnFoodSearch";
+            this.btnFoodSearch.Size = new System.Drawing.Size(96, 32);
+            this.btnFoodSearch.TabIndex = 37;
+            this.btnFoodSearch.Text = "Search";
+            this.btnFoodSearch.UseVisualStyleBackColor = true;
+            this.btnFoodSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // label11
             // 
@@ -417,23 +439,23 @@
             // 
             this.groupBox3.Controls.Add(this.btnDeleteFromMealPlan);
             this.groupBox3.Controls.Add(this.label11);
-            this.groupBox3.Controls.Add(this.dgvLookupSearch);
+            this.groupBox3.Controls.Add(this.dgvFoodSearch);
             this.groupBox3.Controls.Add(this.btnAddToMealPlan);
             this.groupBox3.Controls.Add(this.txtFoodSearchName);
             this.groupBox3.Controls.Add(this.btnDelete);
-            this.groupBox3.Controls.Add(this.btnSearch);
-            this.groupBox3.Location = new System.Drawing.Point(27, 338);
+            this.groupBox3.Controls.Add(this.btnFoodSearch);
+            this.groupBox3.Location = new System.Drawing.Point(27, 314);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(796, 223);
+            this.groupBox3.Size = new System.Drawing.Size(645, 198);
             this.groupBox3.TabIndex = 44;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Food Search";
             // 
             // btnDeleteFromMealPlan
             // 
-            this.btnDeleteFromMealPlan.Location = new System.Drawing.Point(331, 155);
+            this.btnDeleteFromMealPlan.Location = new System.Drawing.Point(257, 155);
             this.btnDeleteFromMealPlan.Name = "btnDeleteFromMealPlan";
-            this.btnDeleteFromMealPlan.Size = new System.Drawing.Size(152, 43);
+            this.btnDeleteFromMealPlan.Size = new System.Drawing.Size(170, 32);
             this.btnDeleteFromMealPlan.TabIndex = 44;
             this.btnDeleteFromMealPlan.Text = "Delete From Meal Plan";
             this.btnDeleteFromMealPlan.UseVisualStyleBackColor = true;
@@ -442,7 +464,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(830, 335);
+            this.label12.Location = new System.Drawing.Point(678, 9);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(70, 17);
             this.label12.TabIndex = 45;
@@ -451,17 +473,127 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(830, 17);
+            this.label13.Location = new System.Drawing.Point(826, 245);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(69, 17);
             this.label13.TabIndex = 46;
             this.label13.Text = "Database";
             // 
+            // dvgFoodCalc
+            // 
+            this.dvgFoodCalc.AllowUserToAddRows = false;
+            this.dvgFoodCalc.AllowUserToDeleteRows = false;
+            this.dvgFoodCalc.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dvgFoodCalc.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dvgFoodCalc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dvgFoodCalc.Location = new System.Drawing.Point(187, 21);
+            this.dvgFoodCalc.Name = "dvgFoodCalc";
+            this.dvgFoodCalc.ReadOnly = true;
+            this.dvgFoodCalc.RowHeadersWidth = 51;
+            this.dvgFoodCalc.RowTemplate.Height = 24;
+            this.dvgFoodCalc.Size = new System.Drawing.Size(763, 203);
+            this.dvgFoodCalc.TabIndex = 45;
+            this.dvgFoodCalc.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dvgFoodCalc_RowHeaderMouseClick);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btnFoodLimitSearch);
+            this.groupBox4.Controls.Add(this.txtFFFat);
+            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Controls.Add(this.txtFFCarb);
+            this.groupBox4.Controls.Add(this.label15);
+            this.groupBox4.Controls.Add(this.txtFFProtein);
+            this.groupBox4.Controls.Add(this.label16);
+            this.groupBox4.Controls.Add(this.txtFFCal);
+            this.groupBox4.Controls.Add(this.label17);
+            this.groupBox4.Controls.Add(this.dvgFoodCalc);
+            this.groupBox4.Location = new System.Drawing.Point(27, 518);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(987, 239);
+            this.groupBox4.TabIndex = 47;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Find Food With Limits";
+            // 
+            // btnFoodLimitSearch
+            // 
+            this.btnFoodLimitSearch.Location = new System.Drawing.Point(24, 181);
+            this.btnFoodLimitSearch.Name = "btnFoodLimitSearch";
+            this.btnFoodLimitSearch.Size = new System.Drawing.Size(152, 43);
+            this.btnFoodLimitSearch.TabIndex = 54;
+            this.btnFoodLimitSearch.Text = "Search";
+            this.btnFoodLimitSearch.UseVisualStyleBackColor = true;
+            this.btnFoodLimitSearch.Click += new System.EventHandler(this.btnFoodLimitSearch_Click);
+            // 
+            // txtFFFat
+            // 
+            this.txtFFFat.Location = new System.Drawing.Point(90, 153);
+            this.txtFFFat.Name = "txtFFFat";
+            this.txtFFFat.Size = new System.Drawing.Size(91, 22);
+            this.txtFFFat.TabIndex = 53;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(21, 39);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(63, 17);
+            this.label14.TabIndex = 46;
+            this.label14.Text = "Calories:";
+            // 
+            // txtFFCarb
+            // 
+            this.txtFFCarb.Location = new System.Drawing.Point(90, 115);
+            this.txtFFCarb.Name = "txtFFCarb";
+            this.txtFFCarb.Size = new System.Drawing.Size(91, 22);
+            this.txtFFCarb.TabIndex = 52;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(21, 77);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(57, 17);
+            this.label15.TabIndex = 47;
+            this.label15.Text = "Protein:";
+            // 
+            // txtFFProtein
+            // 
+            this.txtFFProtein.Location = new System.Drawing.Point(90, 77);
+            this.txtFFProtein.Name = "txtFFProtein";
+            this.txtFFProtein.Size = new System.Drawing.Size(91, 22);
+            this.txtFFProtein.TabIndex = 51;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(21, 115);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(49, 17);
+            this.label16.TabIndex = 48;
+            this.label16.Text = "Carbs:";
+            // 
+            // txtFFCal
+            // 
+            this.txtFFCal.Location = new System.Drawing.Point(90, 39);
+            this.txtFFCal.Name = "txtFFCal";
+            this.txtFFCal.Size = new System.Drawing.Size(91, 22);
+            this.txtFFCal.TabIndex = 50;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(21, 153);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(32, 17);
+            this.label17.TabIndex = 49;
+            this.label17.Text = "Fat:";
+            // 
             // mainNew
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1700, 615);
+            this.ClientSize = new System.Drawing.Size(1287, 767);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.groupBox3);
@@ -472,16 +604,19 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.dgvDB);
             this.Name = "mainNew";
-            this.Text = "mainNew";
+            this.Text = "Meal Planner and Calculator!";
             ((System.ComponentModel.ISupportInitialize)(this.dgvDB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMealPlan)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLookupSearch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFoodSearch)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgFoodCalc)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -520,13 +655,24 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnAddToMealPlan;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.DataGridView dgvLookupSearch;
+        private System.Windows.Forms.DataGridView dgvFoodSearch;
         private System.Windows.Forms.TextBox txtFoodSearchName;
-        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnFoodSearch;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button btnDeleteFromMealPlan;
+        private System.Windows.Forms.DataGridView dvgFoodCalc;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button btnFoodLimitSearch;
+        private System.Windows.Forms.TextBox txtFFFat;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtFFCarb;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtFFProtein;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txtFFCal;
+        private System.Windows.Forms.Label label17;
     }
 }
