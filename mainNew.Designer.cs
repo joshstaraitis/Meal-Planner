@@ -687,7 +687,7 @@
             this.groupBox4.Size = new System.Drawing.Size(602, 231);
             this.groupBox4.TabIndex = 47;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Meal Plan";
+            this.groupBox4.Text = "Daily Meal Planner";
             // 
             // groupBox5
             // 
