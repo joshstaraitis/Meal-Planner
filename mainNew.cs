@@ -164,17 +164,10 @@ namespace Food_Planner_2
         }
         private void DBConnectionTest()
         {
-            // SqlConnection connection creates a connection to SQL DB using connectionString
-            // SqlCommand command stores a SQL statement/procedure to execute against SQL server DB
-            // Using statement provides simple syntax to ensure correct use of IDisposable objects.
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = connection.CreateCommand())
             {
-                // Opens DB Connection.
                 connection.Open();
-                // Checks to see if connectionState is open
-                // If open, display message box telling user the DB Connection is Open.
-                // If closed, display message box telling user the DB Connection is Closed.
                 if (connection.State == ConnectionState.Open)
                 {
                     MessageBox.Show("Database connection is OPEN.");
@@ -184,13 +177,11 @@ namespace Food_Planner_2
                     MessageBox.Show("Database connection is CLOSED.");
 
                 }
-                // Close DB Connection.
                 connection.Close();
             }
         }
         private void ClearForm()
         {
-            // Clears all txtBox data
             txtCalories.Clear();
             txtCarbs.Clear();
             txtFat.Clear();
@@ -199,29 +190,22 @@ namespace Food_Planner_2
             txtServing.Clear();
             txtFoodSearchName.Clear();
         }
-        private void SubmitData()
+        private void SubmitDataFoodAdd()
         {
             try
             {
-                // SqlConnection connection creates a connection to SQL DB using connectionString
-                // SqlCommand command stores a SQL statement/procedure to execute against SQL server DB
-                // Using statement provides simple syntax to ensure correct use of IDisposable objects.
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    // Stores SQL Query in command
                     command.CommandText = "INSERT INTO Food(Name, Serving, Calories, Protein, Carbs, Fat)" +
                         "VALUES(@Name, @Serving, @Calories, @Protein, @Carbs, @Fat)";
-                    // Use AddWithValue to assign txtBox.txt to @DBData
                     command.Parameters.AddWithValue("@Name", txtName.Text);
                     command.Parameters.AddWithValue("@Serving", txtServing.Text);
                     command.Parameters.AddWithValue("@Calories", txtCalories.Text);
                     command.Parameters.AddWithValue("@Protein", txtProtein.Text);
                     command.Parameters.AddWithValue("@Carbs", txtCarbs.Text);
                     command.Parameters.AddWithValue("@Fat", txtFat.Text);
-                    // Opens DB Connection
                     connection.Open();
-                    // Executes command against the connection object and returns the number of rows affected
                     command.ExecuteNonQuery();
                 }
                 MessageBox.Show(txtName.Text + " was added to the database");
@@ -232,25 +216,17 @@ namespace Food_Planner_2
                 MessageBox.Show(txtName.Text + " was NOT added to the database.");
             }
         }
-        private void DeleteFromDB()
+        private void DeleteFoodFromDB()
         {
             try
             {
-                // SqlConnection connection creates a connection to SQL DB using connectionString
-                // SqlCommand command stores a SQL statement/procedure to execute against SQL server DB
-                // Using statement provides simple syntax to ensure correct use of IDisposable objects.
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    // Stores SQL Query in command
                     command.CommandText = @"DELETE from Food WHERE Name = '" + txtFoodSearchName.Text + "'";
-                    // Opens DB Connection
                     connection.Open();
-                    // Executes command against the connection object and returns the number of rows affected
                     command.ExecuteNonQuery();
-                    // Displays messageBox to alert user that deletion was successful.
                     MessageBox.Show(txtFoodSearchName.Text + " was removed from database.");
-                    // Calls ClearForm() Method to clear form data
                     ClearForm();
                 }
             }
@@ -263,20 +239,13 @@ namespace Food_Planner_2
         {
             try
             {
-                // SqlConnection connection creates a connection to SQL DB using connectionString
-                // SqlCommand command stores a SQL statement/procedure to execute against SQL server DB
-                // Using statement provides simple syntax to ensure correct use of IDisposable objects.
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    // Stores SQL Query in command
                     command.CommandText = @"INSERT INTO MEALPLAN(Name, Serving, Calories, Protein, Carbs, Fat)" +
                     "select Name, Serving, Calories, Protein, Carbs, Fat from food WHERE Name = '" + txtFoodSearchName.Text + "'";
-                    // Open DB Connection
                     connection.Open();
-                    // Executes command against the connection object and returns the number of rows affected
                     command.ExecuteNonQuery();
-                    // Calls ClearForm() Method to clear form data
                 }
             }
             catch (SqlException)
@@ -287,18 +256,12 @@ namespace Food_Planner_2
         private void DeleteFromMealPlan()
         {
             try
-            {
-                // SqlConnection connection creates a connection to SQL DB using connectionString
-                // SqlCommand command stores a SQL statement/procedure to execute against SQL server DB
-                // Using statement provides simple syntax to ensure correct use of IDisposable objects.
+            {           
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    // Stores SQL Query in command
                     command.CommandText = @"DELETE FROM MEALPLAN WHERE Name = '" + txtFoodSearchName.Text + "'";
-                    // Opens DB Connection
                     connection.Open();
-                    // Executes command against the connection object and returns the number of rows affected
                     command.ExecuteNonQuery();
                 }
             }
@@ -310,28 +273,17 @@ namespace Food_Planner_2
         private void SearchDB()
         {
             try
-            {
-                // SqlConnection connection creates a connection to SQL DB using connectionString
-                // SqlCommand command stores a SQL statement/procedure to execute against SQL server DB
-                // Using statement provides simple syntax to ensure correct use of IDisposable objects.
+            {             
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    // Stores SQL Query in command
-                    command.CommandText = @"SELECT Name, Serving, Calories, Protein, Carbs, Fat FROM Food WHERE NAME = '" + txtFoodSearchName.Text + "'";
-                    // Creates new SqlCommand with (the text of the query, and connection string) and saves in variable cmd.
+                    command.CommandText = @"SELECT Name, Serving, Calories, Protein, Carbs, Fat FROM Food WHERE NAME LIKE '%" + txtFoodSearchName.Text + "%'";
                     SqlCommand cmd = new SqlCommand(command.CommandText, connection);
-                    // Creates new SqlDataAdapter with specified cmd data
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
-                    // Creates new dataset
                     DataSet dataSet = new DataSet();
-                    // Adds rows from dataAdapter into DataSet.
                     dataAdapter.Fill(dataSet);
-                    // Sets dgv to read only
                     dgvFoodSearch.ReadOnly = true;
-                    // sets dvg dataSource to dataSet Dataset
                     dgvFoodSearch.DataSource = dataSet.Tables[0];
-                    // Closes DB Connection.
                     connection.Close();
                 }
             }
@@ -340,33 +292,22 @@ namespace Food_Planner_2
                 MessageBox.Show("Error searching food database.");
             }
         }
-        private void SearchDBConstraints()
+        private void SearchDBWithConstraints()
         {
             try
-            {
-                // SqlConnection connection creates a connection to SQL DB using connectionString
-                // SqlCommand command stores a SQL statement/procedure to execute against SQL server DB
-                // Using statement provides simple syntax to ensure correct use of IDisposable objects.
+            {             
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    // Stores SQL Query in command
-
-                    command.CommandText = @"SELECT * FROM food WHERE CALORIES <= '" + txtFFCal.Text + "' AND PROTEIN <= '" + txtFFProtein.Text + "' " +
+                    command.CommandText = @"SELECT * FROM food WHERE CALORIES <= '" +
+                        txtFFCal.Text + "' AND PROTEIN <= '" + txtFFProtein.Text + "' " +
                             "AND CARBS <= '" + txtFFCarb.Text + "' AND FAT <= '" + txtFFFat.Text + "'";
-                    // Creates new SqlCommand with (the text of the query, and connection string) and saves in variable cmd.
                     SqlCommand cmd = new SqlCommand(command.CommandText, connection);
-                    // Creates new SqlDataAdapter with specified cmd data
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
-                    // Creates new dataset
                     DataSet dataSet = new DataSet();
-                    // Adds rows from dataAdapter into DataSet.
                     dataAdapter.Fill(dataSet);
-                    // Sets dgv to read only
-                    dvgFoodCalc.ReadOnly = true;
-                    // sets dvg dataSource to dataSet Dataset
-                    dvgFoodCalc.DataSource = dataSet.Tables[0];
-                    // Closes DB Connection.
+                    dgvFoodSearch.ReadOnly = true;
+                    dgvFoodSearch.DataSource = dataSet.Tables[0];
                     connection.Close();
                 }
             }
@@ -375,6 +316,105 @@ namespace Food_Planner_2
                 MessageBox.Show("Error searching food database.");
             }
 
+        }
+        private void SubmitMacroGoalData()
+        {
+            try
+            {
+               
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "INSERT INTO MacroGoalsNEW(calories, protein, carbs, fat)" +
+                        "VALUES(@calories, @protein, @carbs, @fat)";
+                    command.Parameters.AddWithValue("@calories", tbGoalCal.Text);
+                    command.Parameters.AddWithValue("@protein", tbGoalProtein.Text);
+                    command.Parameters.AddWithValue("@carbs", tbGoalCarbs.Text);
+                    command.Parameters.AddWithValue("@fat", tbGoalFat.Text);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                MessageBox.Show("Macro goals have been submitted.");
+
+                //MessageBox.Show("Your updated MACRO GOALS ARE:\n" +
+                //    "Calories: " + tbGoalCal.Text + "\n" +
+                //    "Protein: " + tbGoalProtein.Text + "\n" +
+                //    "Carbs: " + tbGoalCarbs.Text + "\n" +
+                //    "Fat: " + tbGoalFat.Text);
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show(txtName.Text + "MACRO GOAL ERROR.");
+            }
+
+        }
+        private void UpdateMacroGoals()
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = @"SELECT (calories) from macrogoalsnew";
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    object result = command.ExecuteScalar();
+                    lblGoalCal.Text = Convert.ToString(result);
+
+                    command.CommandText = @"SELECT (protein) from macrogoalsnew";
+                    command.ExecuteNonQuery();
+                    object result2 = command.ExecuteScalar();
+                    lblGoalProtein.Text = Convert.ToString(result2);
+
+                    command.CommandText = @"SELECT(carbs) from macrogoalsnew";
+                    command.ExecuteNonQuery();
+                    object result3 = command.ExecuteScalar();
+                    lblGoalCarbs.Text = Convert.ToString(result3);
+
+                    command.CommandText = @"SELECT (fat) from macrogoalsnew";
+                    command.ExecuteNonQuery();
+                    object result4 = command.ExecuteScalar();
+                    lblGoalFat.Text = Convert.ToString(result4);
+                }
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Error updating Meal Plan Totals.");
+            }
+        }
+        private void UpdateMacroDifference()
+        {
+            double GoalCal = Convert.ToDouble(lblGoalCal.Text);
+            double TotalCal = Convert.ToDouble(lblTotalCalories.Text);
+            double GoalProtein = Convert.ToDouble(lblGoalProtein.Text);
+            double TotalProtein = Convert.ToDouble(lblTotalProtein.Text);
+            double GoalCarbs = Convert.ToDouble(lblGoalCarbs.Text);
+            double TotalCarbs = Convert.ToDouble(lblTotalCarbs.Text);
+            double GoalFat = Convert.ToDouble(lblGoalFat.Text);
+            double TotalFat = Convert.ToDouble(lblTotalFat.Text);
+
+            lblMacroDiffCal.Text = (GoalCal - TotalCal).ToString();
+            lblMacroDiffProtein.Text = (GoalProtein - TotalProtein).ToString();
+            lblMacroDiffCarbs.Text = (GoalCarbs - TotalCarbs).ToString();
+            lblMacroDiffFat.Text = (GoalFat - TotalFat).ToString();
+        }
+        private void DVGFoodSearchPullData()
+        {
+            // Retrieve the cell value for the cell at [columnName, row]
+            String cellValueName = (String)dgvFoodSearch["Name", 0].Value;
+            txtFoodSearchName.Text = cellValueName;
+
+            String cellValueCalories = (String)dgvFoodSearch["Calories", 0].Value.ToString();
+            txtFFCal.Text = cellValueCalories;
+
+            String cellValueProtein = (String)dgvFoodSearch["Protein", 0].Value.ToString();
+            txtFFProtein.Text = cellValueProtein;
+
+            String cellValueCarbs = (String)dgvFoodSearch["Carbs", 0].Value.ToString();
+            txtFFCarb.Text = cellValueCarbs;
+
+            String cellValueFat = (String)dgvFoodSearch["Fat", 0].Value.ToString();
+            txtFFFat.Text = cellValueFat;
         }
         
         public mainNew()
@@ -404,13 +444,13 @@ namespace Food_Planner_2
         {
             if (IsAddFoodDataValid())
             {
-                SubmitData();
+                SubmitDataFoodAdd();
                 UpdateDB();
             }
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            DeleteFromDB();
+            DeleteFoodFromDB();
             UpdateDB();
         }
         private void btnAddToMealPlan_Click(object sender, EventArgs e)
@@ -418,6 +458,7 @@ namespace Food_Planner_2
             AddToMealPlan();
             UpdateMealPlan();
             UpdateMealPlanTotals();
+            UpdateMacroDifference();
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -431,19 +472,27 @@ namespace Food_Planner_2
             DeleteFromMealPlan();
             UpdateMealPlan();
             UpdateMealPlanTotals();
+            UpdateMacroDifference();
         }
         private void btnFoodLimitSearch_Click(object sender, EventArgs e)
         {
-            SearchDBConstraints();
+            SearchDBWithConstraints();
         }
         private void btnAddToMealPlanFromLimit_Click(object sender, EventArgs e)
         {
             UpdateMealPlan();
         }
-        private void dvgFoodCalc_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void dgvFoodSearch_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            AddToMealPlan();
-            UpdateMealPlan();
+            DVGFoodSearchPullData();
+        }
+        private void btnSubmitGoal_Click(object sender, EventArgs e)
+        {
+            SubmitMacroGoalData();
+            UpdateMacroGoals();
+            UpdateMacroDifference();
         }
     }
 }
+
+  
