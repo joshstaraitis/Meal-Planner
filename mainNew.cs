@@ -121,7 +121,45 @@ namespace Food_Planner_2
                 MessageBox.Show("Error updating Meal Plan View");
             }
         }
-        private bool IsNameTwoValid()
+        private void UpdateMacroGoals()
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = @"SELECT (calories) from macrogoals mgn1 WHERE mgn1.date = (select max(mgn2.date) " +
+                        " from macrogoals mgn2 where mgn2.date >= mgn1.date)";
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    object result = command.ExecuteScalar();
+                    lblGoalCal.Text = Convert.ToString(result);
+
+                    command.CommandText = @"SELECT (protein) from macrogoals mgn1 WHERE mgn1.date = (select max(mgn2.date) " +
+                        " from macrogoals mgn2 where mgn2.date >= mgn1.date)";
+                    command.ExecuteNonQuery();
+                    object result2 = command.ExecuteScalar();
+                    lblGoalProtein.Text = Convert.ToString(result2);
+
+                    command.CommandText = @"SELECT (carbs) from macrogoals mgn1 WHERE mgn1.date = (select max(mgn2.date) " +
+                        " from macrogoals mgn2 where mgn2.date >= mgn1.date)";
+                    command.ExecuteNonQuery();
+                    object result3 = command.ExecuteScalar();
+                    lblGoalCarbs.Text = Convert.ToString(result3);
+
+                    command.CommandText = @"SELECT (fat) from macrogoals mgn1 WHERE mgn1.date = (select max(mgn2.date) " +
+                        " from macrogoals mgn2 where mgn2.date >= mgn1.date)";
+                    command.ExecuteNonQuery();
+                    object result4 = command.ExecuteScalar();
+                    lblGoalFat.Text = Convert.ToString(result4);
+                }
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Error updating Meal Plan Totals.");
+            }
+        }
+        private bool IsFoodSearchNameValid()
         {
             // Checks to make sure txtFoodSearchName is not empty
             // Returns true if txtFoodSearchName is not empty.
@@ -179,16 +217,6 @@ namespace Food_Planner_2
                 }
                 connection.Close();
             }
-        }
-        private void ClearForm()
-        {
-            txtCalories.Clear();
-            txtCarbs.Clear();
-            txtFat.Clear();
-            txtName.Clear();
-            txtProtein.Clear();
-            txtServing.Clear();
-            txtFoodSearchName.Clear();
         }
         private void SubmitDataFoodAdd()
         {
@@ -327,7 +355,7 @@ namespace Food_Planner_2
                 using (SqlCommand command = connection.CreateCommand())
 
                 {
-                    command.CommandText = "INSERT INTO MacroGoalsNEW(calories, protein, carbs, fat, date)" +
+                    command.CommandText = "INSERT INTO macrogoals(calories, protein, carbs, fat, date)" +
                         "VALUES(@calories, @protein, @carbs, @fat, @Date)";
                     command.Parameters.AddWithValue("@calories", tbGoalCal.Text);
                     command.Parameters.AddWithValue("@protein", tbGoalProtein.Text);
@@ -338,56 +366,12 @@ namespace Food_Planner_2
                     command.ExecuteNonQuery();
                 }
                 MessageBox.Show("Macro goals have been submitted.");
-
-                //MessageBox.Show("Your updated MACRO GOALS ARE:\n" +
-                //    "Calories: " + tbGoalCal.Text + "\n" +
-                //    "Protein: " + tbGoalProtein.Text + "\n" +
-                //    "Carbs: " + tbGoalCarbs.Text + "\n" +
-                //    "Fat: " + tbGoalFat.Text);
             }
             catch (SqlException)
             {
                 MessageBox.Show(txtName.Text + "MACRO GOAL ERROR.");
             }
 
-        }
-        private void UpdateMacroGoals()
-        {
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                using (SqlCommand command = connection.CreateCommand())
-                {
-                    command.CommandText = @"SELECT (calories) from macrogoalsnew mgn1 WHERE mgn1.date = (select max(mgn2.date) " + 
-                        " from macrogoalsnew mgn2 where mgn2.date >= mgn1.date)";
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                    object result = command.ExecuteScalar();
-                    lblGoalCal.Text = Convert.ToString(result);
-
-                    command.CommandText = @"SELECT (protein) from macrogoalsnew mgn1 WHERE mgn1.date = (select max(mgn2.date) " +
-                        " from macrogoalsnew mgn2 where mgn2.date >= mgn1.date)";
-                    command.ExecuteNonQuery();
-                    object result2 = command.ExecuteScalar();
-                    lblGoalProtein.Text = Convert.ToString(result2);
-
-                    command.CommandText = @"SELECT (carbs) from macrogoalsnew mgn1 WHERE mgn1.date = (select max(mgn2.date) " +
-                        " from macrogoalsnew mgn2 where mgn2.date >= mgn1.date)";
-                    command.ExecuteNonQuery();
-                    object result3 = command.ExecuteScalar();
-                    lblGoalCarbs.Text = Convert.ToString(result3);
-
-                    command.CommandText = @"SELECT (fat) from macrogoalsnew mgn1 WHERE mgn1.date = (select max(mgn2.date) " +
-                        " from macrogoalsnew mgn2 where mgn2.date >= mgn1.date)";
-                    command.ExecuteNonQuery();
-                    object result4 = command.ExecuteScalar();
-                    lblGoalFat.Text = Convert.ToString(result4);
-                }
-            }
-            catch (SqlException)
-            {
-                MessageBox.Show("Error updating Meal Plan Totals.");
-            }
         }
         private void UpdateMacroDifference()
         {
@@ -440,6 +424,16 @@ namespace Food_Planner_2
                 MessageBox.Show("Error deleting from meal plan.");
             }
         }
+        private void ClearForm()
+        {
+            txtCalories.Clear();
+            txtCarbs.Clear();
+            txtFat.Clear();
+            txtName.Clear();
+            txtProtein.Clear();
+            txtServing.Clear();
+            txtFoodSearchName.Clear();
+        }
         // GENERATE MEAL PLAN NEEDS WORK!
         private void GenerateMealPlan()
         {
@@ -464,6 +458,19 @@ namespace Food_Planner_2
                 MessageBox.Show("Error generating meal plan.");
             }
         }  
+        private bool USERACCEPT()
+        {
+            string message = "Are you sure you want to do this?";
+            string title = "";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            if (result == DialogResult.Yes)
+            {
+                return true;
+            }
+            else return false;
+        }
         public mainNew()
         {
             InitializeComponent();
@@ -471,7 +478,7 @@ namespace Food_Planner_2
             UpdateMealPlan();
             UpdateMacroGoals();
             UpdateMealPlanTotals();
-
+            UpdateMacroDifference();
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -483,9 +490,12 @@ namespace Food_Planner_2
         }
         private void btnCalcTotal_Click(object sender, EventArgs e)
         {
-            DeleteMealPlan();
-            UpdateMealPlan();
-            UpdateMealPlanTotals();       
+            if (USERACCEPT())
+            {
+                DeleteMealPlan();
+                UpdateMealPlan();
+                UpdateMealPlanTotals();
+            }             
         }
         private void btnClear_Click(object sender, EventArgs e)
         {
@@ -500,9 +510,9 @@ namespace Food_Planner_2
             }
         }
         private void btnDelete_Click(object sender, EventArgs e)
-        {
-            DeleteFoodFromDB();
-            UpdateDB();
+        {   
+                DeleteFoodFromDB();
+                UpdateDB(); 
         }
         private void btnAddToMealPlan_Click(object sender, EventArgs e)
         {
@@ -513,7 +523,7 @@ namespace Food_Planner_2
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (IsNameTwoValid())
+            if (IsFoodSearchNameValid())
             {
                 SearchDB();
             }
@@ -523,6 +533,7 @@ namespace Food_Planner_2
             DeleteFromMealPlan();
             UpdateMealPlan();
             UpdateMealPlanTotals();
+            UpdateMacroDifference();
         }
         private void btnFoodLimitSearch_Click(object sender, EventArgs e)
         {
@@ -541,11 +552,6 @@ namespace Food_Planner_2
             SubmitMacroGoalData();
             UpdateMacroGoals();
             UpdateMealPlanTotals();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            UpdateMacroDifference();
         }
     }
 }
