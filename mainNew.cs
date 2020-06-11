@@ -319,18 +319,21 @@ namespace Food_Planner_2
         }
         private void SubmitMacroGoalData()
         {
+            DateTime date = DateTime.Now;
             try
             {
                
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 using (SqlCommand command = connection.CreateCommand())
+
                 {
-                    command.CommandText = "INSERT INTO MacroGoalsNEW(calories, protein, carbs, fat)" +
-                        "VALUES(@calories, @protein, @carbs, @fat)";
+                    command.CommandText = "INSERT INTO MacroGoalsNEW(calories, protein, carbs, fat, date)" +
+                        "VALUES(@calories, @protein, @carbs, @fat, @Date)";
                     command.Parameters.AddWithValue("@calories", tbGoalCal.Text);
                     command.Parameters.AddWithValue("@protein", tbGoalProtein.Text);
                     command.Parameters.AddWithValue("@carbs", tbGoalCarbs.Text);
                     command.Parameters.AddWithValue("@fat", tbGoalFat.Text);
+                    command.Parameters.AddWithValue("@Date", date);
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
@@ -355,23 +358,27 @@ namespace Food_Planner_2
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = @"SELECT (calories) from macrogoalsnew";
+                    command.CommandText = @"SELECT (calories) from macrogoalsnew mgn1 WHERE mgn1.date = (select max(mgn2.date) " + 
+                        " from macrogoalsnew mgn2 where mgn2.date >= mgn1.date)";
                     connection.Open();
                     command.ExecuteNonQuery();
                     object result = command.ExecuteScalar();
                     lblGoalCal.Text = Convert.ToString(result);
 
-                    command.CommandText = @"SELECT (protein) from macrogoalsnew";
+                    command.CommandText = @"SELECT (protein) from macrogoalsnew mgn1 WHERE mgn1.date = (select max(mgn2.date) " +
+                        " from macrogoalsnew mgn2 where mgn2.date >= mgn1.date)";
                     command.ExecuteNonQuery();
                     object result2 = command.ExecuteScalar();
                     lblGoalProtein.Text = Convert.ToString(result2);
 
-                    command.CommandText = @"SELECT(carbs) from macrogoalsnew";
+                    command.CommandText = @"SELECT (carbs) from macrogoalsnew mgn1 WHERE mgn1.date = (select max(mgn2.date) " +
+                        " from macrogoalsnew mgn2 where mgn2.date >= mgn1.date)";
                     command.ExecuteNonQuery();
                     object result3 = command.ExecuteScalar();
                     lblGoalCarbs.Text = Convert.ToString(result3);
 
-                    command.CommandText = @"SELECT (fat) from macrogoalsnew";
+                    command.CommandText = @"SELECT (fat) from macrogoalsnew mgn1 WHERE mgn1.date = (select max(mgn2.date) " +
+                        " from macrogoalsnew mgn2 where mgn2.date >= mgn1.date)";
                     command.ExecuteNonQuery();
                     object result4 = command.ExecuteScalar();
                     lblGoalFat.Text = Convert.ToString(result4);
@@ -416,13 +423,55 @@ namespace Food_Planner_2
             String cellValueFat = (String)dgvFoodSearch["Fat", 0].Value.ToString();
             txtFFFat.Text = cellValueFat;
         }
-        
+        private void DeleteMealPlan()
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = @"DELETE FROM MEALPLAN";
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Error deleting from meal plan.");
+            }
+        }
+        // GENERATE MEAL PLAN NEEDS WORK!
+        private void GenerateMealPlan()
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = @"Select * from food where protein between";
+
+                    SqlCommand cmd = new SqlCommand(command.CommandText, connection);
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
+                    DataSet dataSet = new DataSet();
+                    dataAdapter.Fill(dataSet);
+                    dgvMealPlan.ReadOnly = true;
+                    dgvMealPlan.DataSource = dataSet.Tables[0];
+                    connection.Close();
+                }
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Error generating meal plan.");
+            }
+        }  
         public mainNew()
         {
             InitializeComponent();
             UpdateDB();
             UpdateMealPlan();
+            UpdateMacroGoals();
             UpdateMealPlanTotals();
+
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -434,7 +483,9 @@ namespace Food_Planner_2
         }
         private void btnCalcTotal_Click(object sender, EventArgs e)
         {
-            UpdateMealPlanTotals();
+            DeleteMealPlan();
+            UpdateMealPlan();
+            UpdateMealPlanTotals();       
         }
         private void btnClear_Click(object sender, EventArgs e)
         {
@@ -472,7 +523,6 @@ namespace Food_Planner_2
             DeleteFromMealPlan();
             UpdateMealPlan();
             UpdateMealPlanTotals();
-            UpdateMacroDifference();
         }
         private void btnFoodLimitSearch_Click(object sender, EventArgs e)
         {
@@ -490,6 +540,11 @@ namespace Food_Planner_2
         {
             SubmitMacroGoalData();
             UpdateMacroGoals();
+            UpdateMealPlanTotals();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
             UpdateMacroDifference();
         }
     }

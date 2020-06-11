@@ -32,7 +32,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnDBTest = new System.Windows.Forms.Button();
             this.dgvMealPlan = new System.Windows.Forms.DataGridView();
-            this.btnCalcTotal = new System.Windows.Forms.Button();
+            this.btnDeleteMealPlan = new System.Windows.Forms.Button();
             this.lblTotalFat = new System.Windows.Forms.Label();
             this.lblTotalCarbs = new System.Windows.Forms.Label();
             this.lblTotalProtein = new System.Windows.Forms.Label();
@@ -42,14 +42,26 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblMacroDiffFat = new System.Windows.Forms.Label();
+            this.lblMacroDiffCarbs = new System.Windows.Forms.Label();
+            this.lblMacroDiffProtein = new System.Windows.Forms.Label();
+            this.lblMacroDiffCal = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.lblGoalFat = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.lblGoalCarbs = new System.Windows.Forms.Label();
             this.lblGoalProtein = new System.Windows.Forms.Label();
             this.lblGoalCal = new System.Windows.Forms.Label();
+            this.btnSubmitGoal = new System.Windows.Forms.Button();
+            this.tbGoalFat = new System.Windows.Forms.TextBox();
+            this.tbGoalCarbs = new System.Windows.Forms.TextBox();
+            this.tbGoalProtein = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
+            this.tbGoalCal = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.txtFat = new System.Windows.Forms.TextBox();
@@ -84,18 +96,6 @@
             this.label17 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.tbGoalCal = new System.Windows.Forms.TextBox();
-            this.tbGoalProtein = new System.Windows.Forms.TextBox();
-            this.tbGoalCarbs = new System.Windows.Forms.TextBox();
-            this.tbGoalFat = new System.Windows.Forms.TextBox();
-            this.btnSubmitGoal = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.lblMacroDiffFat = new System.Windows.Forms.Label();
-            this.lblMacroDiffCarbs = new System.Windows.Forms.Label();
-            this.lblMacroDiffProtein = new System.Windows.Forms.Label();
-            this.lblMacroDiffCal = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMealPlan)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -120,15 +120,15 @@
             this.dgvDB.ReadOnly = true;
             this.dgvDB.RowHeadersWidth = 51;
             this.dgvDB.RowTemplate.Height = 24;
-            this.dgvDB.Size = new System.Drawing.Size(596, 414);
+            this.dgvDB.Size = new System.Drawing.Size(596, 366);
             this.dgvDB.TabIndex = 0;
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(511, 30);
+            this.btnClose.Location = new System.Drawing.Point(307, 198);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(77, 25);
+            this.btnClose.Size = new System.Drawing.Size(152, 25);
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -136,7 +136,7 @@
             // 
             // btnDBTest
             // 
-            this.btnDBTest.Location = new System.Drawing.Point(450, 88);
+            this.btnDBTest.Location = new System.Drawing.Point(307, 169);
             this.btnDBTest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDBTest.Name = "btnDBTest";
             this.btnDBTest.Size = new System.Drawing.Size(152, 25);
@@ -158,23 +158,23 @@
             this.dgvMealPlan.ReadOnly = true;
             this.dgvMealPlan.RowHeadersWidth = 51;
             this.dgvMealPlan.RowTemplate.Height = 24;
-            this.dgvMealPlan.Size = new System.Drawing.Size(587, 206);
+            this.dgvMealPlan.Size = new System.Drawing.Size(587, 215);
             this.dgvMealPlan.TabIndex = 3;
             // 
-            // btnCalcTotal
+            // btnDeleteMealPlan
             // 
-            this.btnCalcTotal.Location = new System.Drawing.Point(408, 59);
-            this.btnCalcTotal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnCalcTotal.Name = "btnCalcTotal";
-            this.btnCalcTotal.Size = new System.Drawing.Size(186, 25);
-            this.btnCalcTotal.TabIndex = 4;
-            this.btnCalcTotal.Text = "Calculate Meal Plan Totals";
-            this.btnCalcTotal.UseVisualStyleBackColor = true;
-            this.btnCalcTotal.Click += new System.EventHandler(this.btnCalcTotal_Click);
+            this.btnDeleteMealPlan.Location = new System.Drawing.Point(376, 101);
+            this.btnDeleteMealPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDeleteMealPlan.Name = "btnDeleteMealPlan";
+            this.btnDeleteMealPlan.Size = new System.Drawing.Size(163, 30);
+            this.btnDeleteMealPlan.TabIndex = 4;
+            this.btnDeleteMealPlan.Text = "Delete Meal Plan";
+            this.btnDeleteMealPlan.UseVisualStyleBackColor = true;
+            this.btnDeleteMealPlan.Click += new System.EventHandler(this.btnCalcTotal_Click);
             // 
             // lblTotalFat
             // 
-            this.lblTotalFat.Location = new System.Drawing.Point(278, 185);
+            this.lblTotalFat.Location = new System.Drawing.Point(285, 107);
             this.lblTotalFat.Name = "lblTotalFat";
             this.lblTotalFat.Size = new System.Drawing.Size(85, 20);
             this.lblTotalFat.TabIndex = 19;
@@ -182,7 +182,7 @@
             // 
             // lblTotalCarbs
             // 
-            this.lblTotalCarbs.Location = new System.Drawing.Point(278, 165);
+            this.lblTotalCarbs.Location = new System.Drawing.Point(285, 87);
             this.lblTotalCarbs.Name = "lblTotalCarbs";
             this.lblTotalCarbs.Size = new System.Drawing.Size(85, 20);
             this.lblTotalCarbs.TabIndex = 18;
@@ -190,7 +190,7 @@
             // 
             // lblTotalProtein
             // 
-            this.lblTotalProtein.Location = new System.Drawing.Point(278, 148);
+            this.lblTotalProtein.Location = new System.Drawing.Point(285, 70);
             this.lblTotalProtein.Name = "lblTotalProtein";
             this.lblTotalProtein.Size = new System.Drawing.Size(85, 20);
             this.lblTotalProtein.TabIndex = 17;
@@ -198,7 +198,7 @@
             // 
             // lblTotalCalories
             // 
-            this.lblTotalCalories.Location = new System.Drawing.Point(278, 128);
+            this.lblTotalCalories.Location = new System.Drawing.Point(285, 50);
             this.lblTotalCalories.Name = "lblTotalCalories";
             this.lblTotalCalories.Size = new System.Drawing.Size(85, 20);
             this.lblTotalCalories.TabIndex = 16;
@@ -207,7 +207,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(40, 151);
+            this.label5.Location = new System.Drawing.Point(47, 73);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 17);
             this.label5.TabIndex = 15;
@@ -216,7 +216,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(40, 168);
+            this.label4.Location = new System.Drawing.Point(47, 90);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 17);
             this.label4.TabIndex = 14;
@@ -225,7 +225,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(40, 185);
+            this.label3.Location = new System.Drawing.Point(47, 107);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(32, 17);
             this.label3.TabIndex = 13;
@@ -233,7 +233,7 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(38, 129);
+            this.label2.Location = new System.Drawing.Point(45, 51);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(99, 17);
             this.label2.TabIndex = 12;
@@ -241,54 +241,104 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnSubmitGoal);
             this.groupBox1.Controls.Add(this.lblMacroDiffFat);
-            this.groupBox1.Controls.Add(this.tbGoalFat);
             this.groupBox1.Controls.Add(this.lblMacroDiffCarbs);
             this.groupBox1.Controls.Add(this.lblMacroDiffProtein);
-            this.groupBox1.Controls.Add(this.tbGoalCarbs);
             this.groupBox1.Controls.Add(this.lblMacroDiffCal);
             this.groupBox1.Controls.Add(this.label22);
-            this.groupBox1.Controls.Add(this.tbGoalProtein);
             this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.lblGoalFat);
-            this.groupBox1.Controls.Add(this.tbGoalCal);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.lblTotalFat);
             this.groupBox1.Controls.Add(this.lblGoalCarbs);
-            this.groupBox1.Controls.Add(this.label21);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.lblTotalCarbs);
-            this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.lblGoalProtein);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.lblTotalProtein);
             this.groupBox1.Controls.Add(this.lblGoalCal);
-            this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.lblTotalCalories);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Location = new System.Drawing.Point(33, 550);
+            this.groupBox1.Location = new System.Drawing.Point(27, 522);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(620, 219);
+            this.groupBox1.Size = new System.Drawing.Size(639, 139);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Meal Plan Information";
             // 
+            // lblMacroDiffFat
+            // 
+            this.lblMacroDiffFat.Location = new System.Drawing.Point(415, 110);
+            this.lblMacroDiffFat.Name = "lblMacroDiffFat";
+            this.lblMacroDiffFat.Size = new System.Drawing.Size(85, 20);
+            this.lblMacroDiffFat.TabIndex = 34;
+            this.lblMacroDiffFat.Text = "0";
+            // 
+            // lblMacroDiffCarbs
+            // 
+            this.lblMacroDiffCarbs.Location = new System.Drawing.Point(415, 88);
+            this.lblMacroDiffCarbs.Name = "lblMacroDiffCarbs";
+            this.lblMacroDiffCarbs.Size = new System.Drawing.Size(85, 20);
+            this.lblMacroDiffCarbs.TabIndex = 33;
+            this.lblMacroDiffCarbs.Text = "0";
+            // 
+            // lblMacroDiffProtein
+            // 
+            this.lblMacroDiffProtein.Location = new System.Drawing.Point(415, 68);
+            this.lblMacroDiffProtein.Name = "lblMacroDiffProtein";
+            this.lblMacroDiffProtein.Size = new System.Drawing.Size(85, 20);
+            this.lblMacroDiffProtein.TabIndex = 32;
+            this.lblMacroDiffProtein.Text = "0";
+            // 
+            // lblMacroDiffCal
+            // 
+            this.lblMacroDiffCal.Location = new System.Drawing.Point(415, 48);
+            this.lblMacroDiffCal.Name = "lblMacroDiffCal";
+            this.lblMacroDiffCal.Size = new System.Drawing.Size(85, 20);
+            this.lblMacroDiffCal.TabIndex = 31;
+            this.lblMacroDiffCal.Text = "0";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(415, 17);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(116, 17);
+            this.label22.TabIndex = 30;
+            this.label22.Text = "Macro Difference";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(136, 17);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(124, 17);
+            this.label13.TabIndex = 29;
+            this.label13.Text = "Macro Goal Totals";
+            // 
             // lblGoalFat
             // 
-            this.lblGoalFat.Location = new System.Drawing.Point(143, 188);
+            this.lblGoalFat.Location = new System.Drawing.Point(150, 110);
             this.lblGoalFat.Name = "lblGoalFat";
             this.lblGoalFat.Size = new System.Drawing.Size(85, 20);
             this.lblGoalFat.TabIndex = 27;
             this.lblGoalFat.Text = "0";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(285, 17);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(113, 17);
+            this.label12.TabIndex = 28;
+            this.label12.Text = "Meal Plan Totals";
+            // 
             // lblGoalCarbs
             // 
-            this.lblGoalCarbs.Location = new System.Drawing.Point(143, 168);
+            this.lblGoalCarbs.Location = new System.Drawing.Point(150, 90);
             this.lblGoalCarbs.Name = "lblGoalCarbs";
             this.lblGoalCarbs.Size = new System.Drawing.Size(85, 20);
             this.lblGoalCarbs.TabIndex = 26;
@@ -296,7 +346,7 @@
             // 
             // lblGoalProtein
             // 
-            this.lblGoalProtein.Location = new System.Drawing.Point(143, 149);
+            this.lblGoalProtein.Location = new System.Drawing.Point(150, 71);
             this.lblGoalProtein.Name = "lblGoalProtein";
             this.lblGoalProtein.Size = new System.Drawing.Size(85, 20);
             this.lblGoalProtein.TabIndex = 25;
@@ -304,47 +354,85 @@
             // 
             // lblGoalCal
             // 
-            this.lblGoalCal.Location = new System.Drawing.Point(143, 129);
+            this.lblGoalCal.Location = new System.Drawing.Point(150, 51);
             this.lblGoalCal.Name = "lblGoalCal";
             this.lblGoalCal.Size = new System.Drawing.Size(85, 20);
             this.lblGoalCal.TabIndex = 24;
             this.lblGoalCal.Text = "0";
             // 
+            // btnSubmitGoal
+            // 
+            this.btnSubmitGoal.Location = new System.Drawing.Point(307, 141);
+            this.btnSubmitGoal.Name = "btnSubmitGoal";
+            this.btnSubmitGoal.Size = new System.Drawing.Size(152, 23);
+            this.btnSubmitGoal.TabIndex = 32;
+            this.btnSubmitGoal.Text = "Submit Macro Goals";
+            this.btnSubmitGoal.UseVisualStyleBackColor = true;
+            this.btnSubmitGoal.Click += new System.EventHandler(this.btnSubmitGoal_Click);
+            // 
+            // tbGoalFat
+            // 
+            this.tbGoalFat.Location = new System.Drawing.Point(389, 105);
+            this.tbGoalFat.Name = "tbGoalFat";
+            this.tbGoalFat.Size = new System.Drawing.Size(100, 22);
+            this.tbGoalFat.TabIndex = 31;
+            // 
+            // tbGoalCarbs
+            // 
+            this.tbGoalCarbs.Location = new System.Drawing.Point(389, 77);
+            this.tbGoalCarbs.Name = "tbGoalCarbs";
+            this.tbGoalCarbs.Size = new System.Drawing.Size(100, 22);
+            this.tbGoalCarbs.TabIndex = 30;
+            // 
+            // tbGoalProtein
+            // 
+            this.tbGoalProtein.Location = new System.Drawing.Point(389, 49);
+            this.tbGoalProtein.Name = "tbGoalProtein";
+            this.tbGoalProtein.Size = new System.Drawing.Size(100, 22);
+            this.tbGoalProtein.TabIndex = 29;
+            // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(341, 39);
+            this.label20.Location = new System.Drawing.Point(286, 108);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(66, 17);
             this.label20.TabIndex = 22;
             this.label20.Text = "Goal Fat:";
             // 
+            // tbGoalCal
+            // 
+            this.tbGoalCal.Location = new System.Drawing.Point(389, 21);
+            this.tbGoalCal.Name = "tbGoalCal";
+            this.tbGoalCal.Size = new System.Drawing.Size(100, 22);
+            this.tbGoalCal.TabIndex = 28;
+            // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(244, 39);
+            this.label21.Location = new System.Drawing.Point(286, 80);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(83, 17);
             this.label21.TabIndex = 23;
             this.label21.Text = "Goal Carbs:";
             // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(23, 39);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(97, 17);
-            this.label18.TabIndex = 20;
-            this.label18.Text = "Goal Calories:";
-            // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(134, 39);
+            this.label19.Location = new System.Drawing.Point(286, 52);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(91, 17);
             this.label19.TabIndex = 21;
             this.label19.Text = "Goal Protein:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(286, 24);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(97, 17);
+            this.label18.TabIndex = 20;
+            this.label18.Text = "Goal Calories:";
             // 
             // btnSubmit
             // 
@@ -500,7 +588,7 @@
             this.btnAddToMealPlan.Location = new System.Drawing.Point(225, 101);
             this.btnAddToMealPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAddToMealPlan.Name = "btnAddToMealPlan";
-            this.btnAddToMealPlan.Size = new System.Drawing.Size(173, 32);
+            this.btnAddToMealPlan.Size = new System.Drawing.Size(145, 32);
             this.btnAddToMealPlan.TabIndex = 43;
             this.btnAddToMealPlan.Text = "Add To Meal Plan";
             this.btnAddToMealPlan.UseVisualStyleBackColor = true;
@@ -508,10 +596,10 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(455, 54);
+            this.btnDelete.Location = new System.Drawing.Point(376, 62);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(171, 32);
+            this.btnDelete.Size = new System.Drawing.Size(163, 32);
             this.btnDelete.TabIndex = 42;
             this.btnDelete.Text = "Delete From Database";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -547,7 +635,7 @@
             this.btnFoodSearch.Location = new System.Drawing.Point(225, 26);
             this.btnFoodSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnFoodSearch.Name = "btnFoodSearch";
-            this.btnFoodSearch.Size = new System.Drawing.Size(173, 32);
+            this.btnFoodSearch.Size = new System.Drawing.Size(145, 32);
             this.btnFoodSearch.TabIndex = 37;
             this.btnFoodSearch.Text = "Search For Food";
             this.btnFoodSearch.UseVisualStyleBackColor = true;
@@ -574,6 +662,7 @@
             this.groupBox3.Controls.Add(this.label15);
             this.groupBox3.Controls.Add(this.btnAddToMealPlan);
             this.groupBox3.Controls.Add(this.txtFFProtein);
+            this.groupBox3.Controls.Add(this.btnDeleteMealPlan);
             this.groupBox3.Controls.Add(this.txtFoodSearchName);
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.btnDelete);
@@ -594,7 +683,7 @@
             this.btnFoodLimitSearch.Location = new System.Drawing.Point(225, 62);
             this.btnFoodLimitSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnFoodLimitSearch.Name = "btnFoodLimitSearch";
-            this.btnFoodLimitSearch.Size = new System.Drawing.Size(173, 33);
+            this.btnFoodLimitSearch.Size = new System.Drawing.Size(145, 33);
             this.btnFoodLimitSearch.TabIndex = 54;
             this.btnFoodLimitSearch.Text = "Search With Constraints";
             this.btnFoodLimitSearch.UseVisualStyleBackColor = true;
@@ -602,10 +691,10 @@
             // 
             // btnDeleteFromMealPlan
             // 
-            this.btnDeleteFromMealPlan.Location = new System.Drawing.Point(455, 18);
+            this.btnDeleteFromMealPlan.Location = new System.Drawing.Point(376, 26);
             this.btnDeleteFromMealPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDeleteFromMealPlan.Name = "btnDeleteFromMealPlan";
-            this.btnDeleteFromMealPlan.Size = new System.Drawing.Size(171, 32);
+            this.btnDeleteFromMealPlan.Size = new System.Drawing.Size(163, 32);
             this.btnDeleteFromMealPlan.TabIndex = 44;
             this.btnDeleteFromMealPlan.Text = "Delete From Meal Plan";
             this.btnDeleteFromMealPlan.UseVisualStyleBackColor = true;
@@ -682,9 +771,9 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.dgvMealPlan);
-            this.groupBox4.Location = new System.Drawing.Point(678, 458);
+            this.groupBox4.Location = new System.Drawing.Point(678, 421);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(602, 231);
+            this.groupBox4.Size = new System.Drawing.Size(602, 240);
             this.groupBox4.TabIndex = 47;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Daily Meal Planner";
@@ -694,121 +783,32 @@
             this.groupBox5.Controls.Add(this.dgvDB);
             this.groupBox5.Location = new System.Drawing.Point(678, 15);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(611, 437);
+            this.groupBox5.Size = new System.Drawing.Size(611, 400);
             this.groupBox5.TabIndex = 48;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Food Database";
-            // 
-            // tbGoalCal
-            // 
-            this.tbGoalCal.Location = new System.Drawing.Point(26, 59);
-            this.tbGoalCal.Name = "tbGoalCal";
-            this.tbGoalCal.Size = new System.Drawing.Size(100, 22);
-            this.tbGoalCal.TabIndex = 28;
-            // 
-            // tbGoalProtein
-            // 
-            this.tbGoalProtein.Location = new System.Drawing.Point(132, 59);
-            this.tbGoalProtein.Name = "tbGoalProtein";
-            this.tbGoalProtein.Size = new System.Drawing.Size(100, 22);
-            this.tbGoalProtein.TabIndex = 29;
-            // 
-            // tbGoalCarbs
-            // 
-            this.tbGoalCarbs.Location = new System.Drawing.Point(238, 59);
-            this.tbGoalCarbs.Name = "tbGoalCarbs";
-            this.tbGoalCarbs.Size = new System.Drawing.Size(100, 22);
-            this.tbGoalCarbs.TabIndex = 30;
-            // 
-            // tbGoalFat
-            // 
-            this.tbGoalFat.Location = new System.Drawing.Point(344, 59);
-            this.tbGoalFat.Name = "tbGoalFat";
-            this.tbGoalFat.Size = new System.Drawing.Size(100, 22);
-            this.tbGoalFat.TabIndex = 31;
-            // 
-            // btnSubmitGoal
-            // 
-            this.btnSubmitGoal.Location = new System.Drawing.Point(450, 59);
-            this.btnSubmitGoal.Name = "btnSubmitGoal";
-            this.btnSubmitGoal.Size = new System.Drawing.Size(152, 23);
-            this.btnSubmitGoal.TabIndex = 32;
-            this.btnSubmitGoal.Text = "Submit Macro Goals";
-            this.btnSubmitGoal.UseVisualStyleBackColor = true;
-            this.btnSubmitGoal.Click += new System.EventHandler(this.btnSubmitGoal_Click);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(129, 95);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(124, 17);
-            this.label13.TabIndex = 29;
-            this.label13.Text = "Macro Goal Totals";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(408, 95);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(116, 17);
-            this.label22.TabIndex = 30;
-            this.label22.Text = "Macro Difference";
-            // 
-            // lblMacroDiffFat
-            // 
-            this.lblMacroDiffFat.Location = new System.Drawing.Point(408, 188);
-            this.lblMacroDiffFat.Name = "lblMacroDiffFat";
-            this.lblMacroDiffFat.Size = new System.Drawing.Size(85, 20);
-            this.lblMacroDiffFat.TabIndex = 34;
-            this.lblMacroDiffFat.Text = "0";
-            // 
-            // lblMacroDiffCarbs
-            // 
-            this.lblMacroDiffCarbs.Location = new System.Drawing.Point(408, 166);
-            this.lblMacroDiffCarbs.Name = "lblMacroDiffCarbs";
-            this.lblMacroDiffCarbs.Size = new System.Drawing.Size(85, 20);
-            this.lblMacroDiffCarbs.TabIndex = 33;
-            this.lblMacroDiffCarbs.Text = "0";
-            // 
-            // lblMacroDiffProtein
-            // 
-            this.lblMacroDiffProtein.Location = new System.Drawing.Point(408, 146);
-            this.lblMacroDiffProtein.Name = "lblMacroDiffProtein";
-            this.lblMacroDiffProtein.Size = new System.Drawing.Size(85, 20);
-            this.lblMacroDiffProtein.TabIndex = 32;
-            this.lblMacroDiffProtein.Text = "0";
-            // 
-            // lblMacroDiffCal
-            // 
-            this.lblMacroDiffCal.Location = new System.Drawing.Point(408, 126);
-            this.lblMacroDiffCal.Name = "lblMacroDiffCal";
-            this.lblMacroDiffCal.Size = new System.Drawing.Size(85, 20);
-            this.lblMacroDiffCal.TabIndex = 31;
-            this.lblMacroDiffCal.Text = "0";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(278, 95);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(113, 17);
-            this.label12.TabIndex = 28;
-            this.label12.Text = "Meal Plan Totals";
             // 
             // mainNew
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1305, 965);
+            this.ClientSize = new System.Drawing.Size(1305, 669);
+            this.Controls.Add(this.btnSubmitGoal);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.tbGoalFat);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.tbGoalCarbs);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnDBTest);
-            this.Controls.Add(this.btnCalcTotal);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.tbGoalProtein);
+            this.Controls.Add(this.tbGoalCal);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.label21);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "mainNew";
             this.Text = "Meal Planner and Calculator";
@@ -824,6 +824,7 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -833,7 +834,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnDBTest;
         private System.Windows.Forms.DataGridView dgvMealPlan;
-        private System.Windows.Forms.Button btnCalcTotal;
+        private System.Windows.Forms.Button btnDeleteMealPlan;
         private System.Windows.Forms.Label lblTotalFat;
         private System.Windows.Forms.Label lblTotalCarbs;
         private System.Windows.Forms.Label lblTotalProtein;
