@@ -12,7 +12,7 @@ namespace Food_Planner_2
 {
     public partial class mainNew : Form
     {
-        string connectionString = @"Data Source=JOSHPC\SQLEXPRESS;Initial Catalog=FoodTEST;Integrated Security=True;
+        readonly string connectionString = @"Data Source=JOSHPC\SQLEXPRESS;Initial Catalog=FoodTEST;Integrated Security=True;
         Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         private void UpdateMealPlanTotals()
         {
@@ -389,23 +389,26 @@ namespace Food_Planner_2
             lblMacroDiffCarbs.Text = (GoalCarbs - TotalCarbs).ToString();
             lblMacroDiffFat.Text = (GoalFat - TotalFat).ToString();
         }
-        private void DVGFoodSearchPullData()
+         private void DVGFoodSearchPullData()
         {
-            // Retrieve the cell value for the cell at [columnName, row]
-            String cellValueName = (String)dgvFoodSearch["Name", 0].Value;
+            // Retrieve the index for selected row in dgvFoodSearch
+            int RowIndex = dgvFoodSearch.CurrentCell.RowIndex;
+
+            // Retrieve the cell value for the cell at [columnName, RowIndex]
+            String cellValueName = (String)dgvFoodSearch["Name", RowIndex].Value;
             txtFoodSearchName.Text = cellValueName;
 
-            String cellValueCalories = (String)dgvFoodSearch["Calories", 0].Value.ToString();
+            String cellValueCalories = (String)dgvFoodSearch["Calories", RowIndex].Value.ToString();
             txtFFCal.Text = cellValueCalories;
 
-            String cellValueProtein = (String)dgvFoodSearch["Protein", 0].Value.ToString();
+            String cellValueProtein = (String)dgvFoodSearch["Protein", RowIndex].Value.ToString();
             txtFFProtein.Text = cellValueProtein;
 
-            String cellValueCarbs = (String)dgvFoodSearch["Carbs", 0].Value.ToString();
+            String cellValueCarbs = (String)dgvFoodSearch["Carbs", RowIndex].Value.ToString();
             txtFFCarb.Text = cellValueCarbs;
 
-            String cellValueFat = (String)dgvFoodSearch["Fat", 0].Value.ToString();
-            txtFFFat.Text = cellValueFat;
+            String cellValueFat = (String)dgvFoodSearch["Fat", RowIndex].Value.ToString();
+            txtFFFat.Text = cellValueFat;  
         }
         private void DeleteMealPlan()
         {
@@ -437,26 +440,7 @@ namespace Food_Planner_2
         // GENERATE MEAL PLAN NEEDS WORK!
         private void GenerateMealPlan()
         {
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                using (SqlCommand command = connection.CreateCommand())
-                {
-                    command.CommandText = @"Select * from food where protein between";
-
-                    SqlCommand cmd = new SqlCommand(command.CommandText, connection);
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
-                    DataSet dataSet = new DataSet();
-                    dataAdapter.Fill(dataSet);
-                    dgvMealPlan.ReadOnly = true;
-                    dgvMealPlan.DataSource = dataSet.Tables[0];
-                    connection.Close();
-                }
-            }
-            catch (SqlException)
-            {
-                MessageBox.Show("Error generating meal plan.");
-            }
+            // 
         }  
         private bool USERACCEPT()
         {
@@ -469,8 +453,13 @@ namespace Food_Planner_2
             {
                 return true;
             }
-            else return false;
+            else
+            {
+                return false;
+            }
+                     
         }
+
         public mainNew()
         {
             InitializeComponent();

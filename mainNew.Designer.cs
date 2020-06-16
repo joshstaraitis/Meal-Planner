@@ -127,10 +127,10 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(558, 145);
+            this.btnClose.Location = new System.Drawing.Point(558, 87);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(99, 86);
+            this.btnClose.Size = new System.Drawing.Size(99, 54);
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -141,7 +141,7 @@
             this.btnDBTest.Location = new System.Drawing.Point(558, 15);
             this.btnDBTest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDBTest.Name = "btnDBTest";
-            this.btnDBTest.Size = new System.Drawing.Size(99, 120);
+            this.btnDBTest.Size = new System.Drawing.Size(99, 66);
             this.btnDBTest.TabIndex = 2;
             this.btnDBTest.Text = "Test DB Connection";
             this.btnDBTest.UseVisualStyleBackColor = true;
@@ -813,7 +813,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1305, 672);
+            this.ClientSize = new System.Drawing.Size(1305, 1039);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
