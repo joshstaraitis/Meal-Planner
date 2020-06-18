@@ -410,6 +410,27 @@ namespace Food_Planner_2
             String cellValueFat = (String)dgvFoodSearch["Fat", RowIndex].Value.ToString();
             txtFFFat.Text = cellValueFat;  
         }
+        private void DGVDBPullData()
+        {
+            // Retrieve the index for selected row in dgvFoodSearch
+            int RowIndex = dgvDB.CurrentCell.RowIndex;
+
+            // Retrieve the cell value for the cell at [columnName, RowIndex]
+            String cellValueName = (String)dgvDB["Name", RowIndex].Value;
+            txtFoodSearchName.Text = cellValueName;
+
+            String cellValueCalories = (String)dgvDB["Calories", RowIndex].Value.ToString();
+            txtFFCal.Text = cellValueCalories;
+
+            String cellValueProtein = (String)dgvDB["Protein", RowIndex].Value.ToString();
+            txtFFProtein.Text = cellValueProtein;
+
+            String cellValueCarbs = (String)dgvDB["Carbs", RowIndex].Value.ToString();
+            txtFFCarb.Text = cellValueCarbs;
+
+            String cellValueFat = (String)dgvDB["Fat", RowIndex].Value.ToString();
+            txtFFFat.Text = cellValueFat;
+        }
         private void DeleteMealPlan()
         {
             try
@@ -429,13 +450,18 @@ namespace Food_Planner_2
         }
         private void ClearForm()
         {
+            txtName.Clear();
+            txtServing.Clear();
             txtCalories.Clear();
+            txtProtein.Clear();
             txtCarbs.Clear();
             txtFat.Clear();
-            txtName.Clear();
-            txtProtein.Clear();
-            txtServing.Clear();
             txtFoodSearchName.Clear();
+            txtFFCal.Clear();
+            txtFFCarb.Clear();
+            txtFFFat.Clear();
+            txtFFProtein.Clear();
+
         }
         // GENERATE MEAL PLAN NEEDS WORK!
         private void GenerateMealPlan()
@@ -467,7 +493,7 @@ namespace Food_Planner_2
             UpdateMealPlan();
             UpdateMacroGoals();
             UpdateMealPlanTotals();
-            UpdateMacroDifference();
+    
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -492,7 +518,7 @@ namespace Food_Planner_2
         }
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (IsAddFoodDataValid())
+            if (IsAddFoodDataValid() && USERACCEPT())
             {
                 SubmitDataFoodAdd();
                 UpdateDB();
@@ -500,8 +526,13 @@ namespace Food_Planner_2
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {   
+            if (USERACCEPT())
+            {
                 DeleteFoodFromDB();
-                UpdateDB(); 
+                UpdateDB();
+                ClearForm();
+            }
+                
         }
         private void btnAddToMealPlan_Click(object sender, EventArgs e)
         {
@@ -541,6 +572,11 @@ namespace Food_Planner_2
             SubmitMacroGoalData();
             UpdateMacroGoals();
             UpdateMealPlanTotals();
+        }
+
+        private void dgvDB_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DGVDBPullData();
         }
     }
 }
