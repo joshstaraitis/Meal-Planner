@@ -16,7 +16,7 @@ namespace Food_Planner_2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new mainNew());
+            Application.Run(new MainNew());
         }
     }
 }

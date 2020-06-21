@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Food Planner 2.exe" size="35752">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Food Planner 2.exe" size="36776">
       <assemblyIdentity name="Food Planner 2" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Xdyev4jDlHWTDMRP+MsnUz8gaq8cgGG6f4na3kxaM9s=</dsig:DigestValue>
+        <dsig:DigestValue>QMa+KeL5E2hUCanGlqseNqBvs9HAddX3PIG45HZXJjw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

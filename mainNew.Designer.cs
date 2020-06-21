@@ -1,6 +1,6 @@
 ﻿namespace Food_Planner_2
 {
-    partial class mainNew
+    partial class MainNew
     {
         /// <summary>
         /// Required designer variable.
@@ -824,7 +824,7 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnDBTest);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "mainNew";
+            this.Name = "MainNew";
             this.Text = "Meal Planner and Calculator";
             ((System.ComponentModel.ISupportInitialize)(this.dgvDB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMealPlan)).EndInit();
