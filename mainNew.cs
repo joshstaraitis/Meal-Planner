@@ -159,7 +159,10 @@ namespace Food_Planner_2
                 MessageBox.Show(@"Please enter carbs.");
                 return false;
             }
-            if (txtFat.Text != "") return true;
+            if (txtFat.Text != "")
+            {
+                return true;
+            }
             MessageBox.Show(@"Please enter fat.");
             return false;
         }
@@ -496,7 +499,10 @@ namespace Food_Planner_2
         }
         private void btnCalcTotal_Click(object sender, EventArgs e)
         {
-            if (!Useraccept()) return;
+            if (!Useraccept())
+            {
+                return;
+            }
             DeleteMealPlan();
             UpdateMealPlan();
             UpdateMealPlanTotals();
@@ -507,13 +513,19 @@ namespace Food_Planner_2
         }
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (!IsAddFoodDataValid() || !Useraccept()) return;
+            if (!IsAddFoodDataValid() || !Useraccept())
+            {
+                return;
+            }
             SubmitDataFoodAdd();
             UpdateDb();
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (!Useraccept()) return;
+            if (!Useraccept())
+            {
+                return;
+            }
             DeleteFoodFromDb();
             UpdateDb();
             ClearForm();
