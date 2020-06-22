@@ -97,6 +97,9 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.tbMealName = new System.Windows.Forms.TextBox();
+            this.btnSubmitMeal = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMealPlan)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -120,7 +123,7 @@
             this.dgvDB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvDB.Name = "dgvDB";
             this.dgvDB.ReadOnly = true;
-            this.dgvDB.RowHeadersWidth = 51;
+            this.dgvDB.RowHeadersWidth = 20;
             this.dgvDB.RowTemplate.Height = 24;
             this.dgvDB.Size = new System.Drawing.Size(587, 366);
             this.dgvDB.TabIndex = 0;
@@ -160,10 +163,11 @@
             this.dgvMealPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvMealPlan.Name = "dgvMealPlan";
             this.dgvMealPlan.ReadOnly = true;
-            this.dgvMealPlan.RowHeadersWidth = 51;
+            this.dgvMealPlan.RowHeadersWidth = 20;
             this.dgvMealPlan.RowTemplate.Height = 24;
             this.dgvMealPlan.Size = new System.Drawing.Size(587, 215);
             this.dgvMealPlan.TabIndex = 3;
+            this.dgvMealPlan.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvMealPlan_RowHeaderMouseDoubleClick);
             // 
             // btnDeleteMealPlan
             // 
@@ -810,11 +814,40 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Macro Goals";
             // 
-            // mainNew
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(72, 765);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(83, 17);
+            this.label23.TabIndex = 50;
+            this.label23.Text = "Meal Name:";
+            // 
+            // tbMealName
+            // 
+            this.tbMealName.Location = new System.Drawing.Point(162, 762);
+            this.tbMealName.Name = "tbMealName";
+            this.tbMealName.Size = new System.Drawing.Size(100, 22);
+            this.tbMealName.TabIndex = 51;
+            // 
+            // btnSubmitMeal
+            // 
+            this.btnSubmitMeal.Location = new System.Drawing.Point(166, 790);
+            this.btnSubmitMeal.Name = "btnSubmitMeal";
+            this.btnSubmitMeal.Size = new System.Drawing.Size(96, 23);
+            this.btnSubmitMeal.TabIndex = 52;
+            this.btnSubmitMeal.Text = "Create Meal";
+            this.btnSubmitMeal.UseVisualStyleBackColor = true;
+            this.btnSubmitMeal.Click += new System.EventHandler(this.btnSubmitMeal_Click);
+            // 
+            // MainNew
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1305, 1039);
+            this.Controls.Add(this.btnSubmitMeal);
+            this.Controls.Add(this.tbMealName);
+            this.Controls.Add(this.label23);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
@@ -840,6 +873,7 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -914,5 +948,8 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox tbMealName;
+        private System.Windows.Forms.Button btnSubmitMeal;
     }
 }

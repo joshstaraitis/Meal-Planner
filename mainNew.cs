@@ -14,19 +14,12 @@ namespace Food_Planner_2
         {
             try
             {
-                // SqlConnection connection creates a connection to SQL DB using connectionString
-                // SqlCommand command stores a SQL statement/procedure to execute against SQL server DB
-                // Using statement provides simple syntax to ensure correct use of IDisposable objects.
                 using (var connection = new SqlConnection(ConnectionString))
                 using (var command = connection.CreateCommand())
                 {
-                    // Stores query in command
                     command.CommandText = @"SELECT SUM(calories) from mealplan";
-                    // Opens DB Connection
                     connection.Open();
-                    // Executes command against the connection object and returns the number of rows affected
                     command.ExecuteNonQuery();
-                    // ExecuteScalar() executes query and returns the first column of the first row in the result
                     var result = command.ExecuteScalar();
                     lblTotalCalories.Text = Convert.ToString(result);
 
@@ -55,27 +48,16 @@ namespace Food_Planner_2
         {
             try
             {
-                // SqlConnection connection creates a connection to SQL DB using connectionString
-                // SqlCommand command stores a SQL statement/procedure to execute against SQL server DB
-                // Using statement provides simple syntax to ensure correct use of IDisposable objects.
                 using (var connection = new SqlConnection(ConnectionString))
                 using (var command = connection.CreateCommand())
                 {
-                    // Stores query in command
                     command.CommandText = @"SELECT * FROM FOOD";
-                    // Creates new SqlCommand with (the text of the query, and connection string) and saves in variable cmd.
                     var cmd = new SqlCommand(command.CommandText, connection);
-                    // Creates new SqlDataAdapter with specified cmd data
                     var dataAdapter = new SqlDataAdapter(cmd);
-                    // Creates new data-set
                     var dataSet = new DataSet();
-                    // Adds rows from dataAdapter into DataSet.
                     dataAdapter.Fill(dataSet);
-                    // Sets dgv to read only
                     dgvDB.ReadOnly = true;
-                    // sets dvg dataSource to dataSet Data-set
                     dgvDB.DataSource = dataSet.Tables[0];
-                    // Closes DB Connection.
                     connection.Close();
                 }
             }
@@ -88,27 +70,16 @@ namespace Food_Planner_2
         {
             try
             {
-                // SqlConnection connection creates a connection to SQL DB using connectionString
-                // SqlCommand command stores a SQL statement/procedure to execute against SQL server DB
-                // Using statement provides simple syntax to ensure correct use of IDisposable objects.
                 using (var connection = new SqlConnection(ConnectionString))
                 using (var command = connection.CreateCommand())
                 {
-                    // Stores query in command
                     command.CommandText = @"SELECT * FROM MEALPLAN";
-                    // Creates new SqlCommand with (the text of the query, and connection string) and saves in variable cmd.
                     var cmd = new SqlCommand(command.CommandText, connection);
-                    // Creates new SqlDataAdapter with specified cmd data
                     var dataAdapter = new SqlDataAdapter(cmd);
-                    // Creates new data-set
                     var dataSet = new DataSet();
-                    // Adds rows from dataAdapter into DataSet.
                     dataAdapter.Fill(dataSet);
-                    // Sets dgv to read only
                     dgvMealPlan.ReadOnly = true;
-                    // sets dvg dataSource to dataSet Data-set
                     dgvMealPlan.DataSource = dataSet.Tables[0];
-                    // Closes DB Connection.
                     connection.Close();
                 }
             }
@@ -157,53 +128,40 @@ namespace Food_Planner_2
         }
         private bool IsFoodSearchNameValid()
         {
-            // Checks to make sure txtFoodSearchName is not empty
-            // Returns true if txtFoodSearchName is not empty.
-            // Returns false if txtFoodSearchName is empty.
-            // = is assignment operator, == is equal to operator used for comparison 
             if (txtFoodSearchName.Text != "") return true;
             MessageBox.Show(@"Please enter a food name to search.");
             return false;
         }
         private bool IsAddFoodDataValid()
         {
-            // Checks to make sure txt boxes for adding food section have data entered.
             if (txtName.Text == "")
             {
                 MessageBox.Show(@"Please enter food name.");
                 return false;
             }
-
             if (txtServing.Text == "")
             {
                 MessageBox.Show(@"Please enter serving size in grams.");
                 return false;
             }
-
             if (txtCalories.Text == "")
             {
                 MessageBox.Show(@"Please enter calories.");
                 return false;
             }
-
             if (txtProtein.Text == "")
             {
                 MessageBox.Show(@"Please enter protein.");
                 return false;
             }
-
             if (txtCarbs.Text == "")
             {
                 MessageBox.Show(@"Please enter carbs.");
                 return false;
             }
-
-            if (txtFat.Text == "")
-            {
-                MessageBox.Show(@"Please enter fat.");
-                return false;
-            }
-            return true;
+            if (txtFat.Text != "") return true;
+            MessageBox.Show(@"Please enter fat.");
+            return false;
         }
         private static void DbConnectionTest()
         {
@@ -366,8 +324,7 @@ namespace Food_Planner_2
         }
         private void SubmitMacroGoalData()
         {
-            // ReSharper disable once SuggestVarOrType_SimpleTypes
-            DateTime date = DateTime.Now;
+            var date = DateTime.Now;
             try
             {
                
@@ -411,10 +368,8 @@ namespace Food_Planner_2
         }
          private void DvgFoodSearchPullData()
         {
-            // Retrieve the index for selected row in dgvFoodSearch
             var rowIndex = dgvFoodSearch.CurrentCell.RowIndex;
 
-            // Retrieve the cell value for the cell at [columnName, RowIndex]
             var cellValueName = (string)dgvFoodSearch["Name", rowIndex].Value;
             txtFoodSearchName.Text = cellValueName;
 
@@ -432,10 +387,8 @@ namespace Food_Planner_2
         }
         private void DgvdbPullData()
         {
-            // Retrieve the index for selected row in dgvFoodSearch
             var rowIndex = dgvDB.CurrentCell.RowIndex;
 
-            // Retrieve the cell value for the cell at [columnName, RowIndex]
             var cellValueName = (string)dgvDB["Name", rowIndex].Value;
             txtFoodSearchName.Text = cellValueName;
 
@@ -449,6 +402,25 @@ namespace Food_Planner_2
             txtFFCarb.Text = cellValueCarbs;
 
             var cellValueFat = dgvDB["Fat", rowIndex].Value.ToString();
+            txtFFFat.Text = cellValueFat;
+        }
+        private void DgvMealPlanPullData()
+        {
+            var rowIndex = dgvMealPlan.CurrentCell.RowIndex;
+
+            var cellValueName = (string)dgvMealPlan["Name", rowIndex].Value;
+            txtFoodSearchName.Text = cellValueName;
+
+            var cellValueCalories = dgvMealPlan["Calories", rowIndex].Value.ToString();
+            txtFFCal.Text = cellValueCalories;
+
+            var cellValueProtein = dgvMealPlan["Protein", rowIndex].Value.ToString();
+            txtFFProtein.Text = cellValueProtein;
+
+            var cellValueCarbs = dgvMealPlan["Carbs", rowIndex].Value.ToString();
+            txtFFCarb.Text = cellValueCarbs;
+
+            var cellValueFat = dgvMealPlan["Fat", rowIndex].Value.ToString();
             txtFFFat.Text = cellValueFat;
         }
         private static void DeleteMealPlan()
@@ -483,7 +455,17 @@ namespace Food_Planner_2
             txtFFProtein.Clear();
 
         }
-        // GENERATE MEAL PLAN NEEDS WORK!
+        private static bool Useraccept()
+        {
+            const string message = "Are you sure you want to do this?";
+            const string title = "";
+            const MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            var result = MessageBox.Show(message, title, buttons);
+            return result == DialogResult.Yes;
+        }
+        private static void CreateMeal()
+        {
+        }
         private void GenerateMealPlan()
         {
             // Select food that meets criteria from user
@@ -491,16 +473,10 @@ namespace Food_Planner_2
             // calculates mealplantotals from mealplanGenerateTable
             // checks values against user entered macro goals
             // continues to add food and loops through all checks until it is close to maxing out?
-        }  
-        private bool USERACCEPT()
+        }
+        private void ExportMealPlanToTextFile()
         {
-            const string message = "Are you sure you want to do this?";
-            const string title = "";
-            const MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-
-            var result = MessageBox.Show(message, title, buttons);
-            return result == DialogResult.Yes;
-                     
+            // Add functionality to export MealPlan table to txt file/pdf?
         }
         public MainNew()
         {
@@ -509,7 +485,6 @@ namespace Food_Planner_2
             UpdateMealPlan();
             UpdateMacroGoals();
             UpdateMealPlanTotals();
-    
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -521,7 +496,7 @@ namespace Food_Planner_2
         }
         private void btnCalcTotal_Click(object sender, EventArgs e)
         {
-            if (!USERACCEPT()) return;
+            if (!Useraccept()) return;
             DeleteMealPlan();
             UpdateMealPlan();
             UpdateMealPlanTotals();
@@ -532,13 +507,13 @@ namespace Food_Planner_2
         }
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (!IsAddFoodDataValid() || !USERACCEPT()) return;
+            if (!IsAddFoodDataValid() || !Useraccept()) return;
             SubmitDataFoodAdd();
             UpdateDb();
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (!USERACCEPT()) return;
+            if (!Useraccept()) return;
             DeleteFoodFromDb();
             UpdateDb();
             ClearForm();
@@ -583,7 +558,13 @@ namespace Food_Planner_2
         {
             DgvdbPullData();
         }
+        private void btnSubmitMeal_Click(object sender, EventArgs e)
+        {
+            CreateMeal();
+        }
+        private void dgvMealPlan_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DgvMealPlanPullData();
+        }
     }
 }
-
-  
