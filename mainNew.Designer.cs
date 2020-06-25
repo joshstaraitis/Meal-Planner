@@ -100,6 +100,9 @@
             this.label23 = new System.Windows.Forms.Label();
             this.tbMealName = new System.Windows.Forms.TextBox();
             this.btnSubmitMeal = new System.Windows.Forms.Button();
+            this.dvgGenerateMealPlan = new System.Windows.Forms.DataGridView();
+            this.btnDeleteGenMealPlan = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMealPlan)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -109,6 +112,7 @@
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgGenerateMealPlan)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvDB
@@ -817,7 +821,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(72, 765);
+            this.label23.Location = new System.Drawing.Point(244, 677);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(83, 17);
             this.label23.TabIndex = 50;
@@ -825,26 +829,62 @@
             // 
             // tbMealName
             // 
-            this.tbMealName.Location = new System.Drawing.Point(162, 762);
+            this.tbMealName.Location = new System.Drawing.Point(334, 674);
             this.tbMealName.Name = "tbMealName";
             this.tbMealName.Size = new System.Drawing.Size(100, 22);
             this.tbMealName.TabIndex = 51;
             // 
             // btnSubmitMeal
             // 
-            this.btnSubmitMeal.Location = new System.Drawing.Point(166, 790);
+            this.btnSubmitMeal.Location = new System.Drawing.Point(338, 702);
             this.btnSubmitMeal.Name = "btnSubmitMeal";
-            this.btnSubmitMeal.Size = new System.Drawing.Size(96, 23);
+            this.btnSubmitMeal.Size = new System.Drawing.Size(220, 23);
             this.btnSubmitMeal.TabIndex = 52;
-            this.btnSubmitMeal.Text = "Create Meal";
+            this.btnSubmitMeal.Text = "Create Meal Plan";
             this.btnSubmitMeal.UseVisualStyleBackColor = true;
             this.btnSubmitMeal.Click += new System.EventHandler(this.btnSubmitMeal_Click);
+            // 
+            // dvgGenerateMealPlan
+            // 
+            this.dvgGenerateMealPlan.AllowUserToAddRows = false;
+            this.dvgGenerateMealPlan.AllowUserToDeleteRows = false;
+            this.dvgGenerateMealPlan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dvgGenerateMealPlan.Location = new System.Drawing.Point(684, 687);
+            this.dvgGenerateMealPlan.Name = "dvgGenerateMealPlan";
+            this.dvgGenerateMealPlan.ReadOnly = true;
+            this.dvgGenerateMealPlan.RowHeadersWidth = 51;
+            this.dvgGenerateMealPlan.RowTemplate.Height = 24;
+            this.dvgGenerateMealPlan.Size = new System.Drawing.Size(587, 327);
+            this.dvgGenerateMealPlan.TabIndex = 53;
+            // 
+            // btnDeleteGenMealPlan
+            // 
+            this.btnDeleteGenMealPlan.Location = new System.Drawing.Point(338, 732);
+            this.btnDeleteGenMealPlan.Name = "btnDeleteGenMealPlan";
+            this.btnDeleteGenMealPlan.Size = new System.Drawing.Size(220, 23);
+            this.btnDeleteGenMealPlan.TabIndex = 54;
+            this.btnDeleteGenMealPlan.Text = "DELETE";
+            this.btnDeleteGenMealPlan.UseVisualStyleBackColor = true;
+            this.btnDeleteGenMealPlan.Click += new System.EventHandler(this.btnDeleteGenMealPlan_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(130, 919);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 55;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainNew
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1305, 1039);
+            this.ClientSize = new System.Drawing.Size(1305, 1026);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnDeleteGenMealPlan);
+            this.Controls.Add(this.dvgGenerateMealPlan);
             this.Controls.Add(this.btnSubmitMeal);
             this.Controls.Add(this.tbMealName);
             this.Controls.Add(this.label23);
@@ -872,6 +912,7 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgGenerateMealPlan)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -951,5 +992,8 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox tbMealName;
         private System.Windows.Forms.Button btnSubmitMeal;
+        private System.Windows.Forms.DataGridView dvgGenerateMealPlan;
+        private System.Windows.Forms.Button btnDeleteGenMealPlan;
+        private System.Windows.Forms.Button button1;
     }
 }

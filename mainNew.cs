@@ -224,6 +224,40 @@ namespace Food_Planner_2
                 MessageBox.Show(txtName.Text + @" was NOT added to the database.");
             }
         }
+        private void UpdateMealPlanTotalsAfterGenerate()
+        {
+            try
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = @"SELECT SUM(calories) from generatemealplan";
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    var result = command.ExecuteScalar();
+                    lblTotalCalories.Text = Convert.ToString(result);
+
+                    command.CommandText = @"SELECT SUM(protein) from generatemealplan";
+                    command.ExecuteNonQuery();
+                    var result2 = command.ExecuteScalar();
+                    lblTotalProtein.Text = Convert.ToString(result2);
+
+                    command.CommandText = @"SELECT SUM(carbs) from generatemealplan";
+                    command.ExecuteNonQuery();
+                    var result3 = command.ExecuteScalar();
+                    lblTotalCarbs.Text = Convert.ToString(result3);
+
+                    command.CommandText = @"SELECT SUM(fat) from generatemealplan";
+                    command.ExecuteNonQuery();
+                    var result4 = command.ExecuteScalar();
+                    lblTotalFat.Text = Convert.ToString(result4);
+                }
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show(@"Error updating Meal Plan Totals.");
+            }
+        }
         private void DeleteFoodFromDb()
         {
             try
@@ -368,8 +402,9 @@ namespace Food_Planner_2
             lblMacroDiffProtein.Text = (goalProtein - totalProtein).ToString(CultureInfo.InvariantCulture);
             lblMacroDiffCarbs.Text = (goalCarbs - totalCarbs).ToString(CultureInfo.InvariantCulture);
             lblMacroDiffFat.Text = (goalFat - totalFat).ToString(CultureInfo.InvariantCulture);
+
         }
-         private void DvgFoodSearchPullData()
+        private void DvgFoodSearchPullData()
         {
             var rowIndex = dgvFoodSearch.CurrentCell.RowIndex;
 
@@ -466,21 +501,89 @@ namespace Food_Planner_2
             var result = MessageBox.Show(message, title, buttons);
             return result == DialogResult.Yes;
         }
-        private static void CreateMeal()
+        private void CreateMealPlanProtein()
         {
+            // select highest protein from food table where protein is <= lblGoalProtein.Text and insert into mealplangoals, update dvgGenerateMealPlan
+            try
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                        @"insert into generatemealplan " +
+                        "select * from food " +
+                        "where protein = (select max(protein) from food where protein <= " + lblMacroDiffProtein.Text + ")";
+                    connection.Open();
+                    command.ExecuteNonQuery();
+
+                    command.CommandText =
+                        @"select * from generatemealplan";
+                    command.ExecuteNonQuery();
+
+
+                    var cmd = new SqlCommand(command.CommandText, connection);
+                    var dataAdapter = new SqlDataAdapter(cmd);
+                    var dataSet = new DataSet();
+                    dataAdapter.Fill(dataSet);
+                    dvgGenerateMealPlan.ReadOnly = true;
+                    dvgGenerateMealPlan.DataSource = dataSet.Tables[0];
+                    connection.Close();
+                }
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show(@"Error CREATING MEAL PLAN.");
+            }
         }
-        private void GenerateMealPlan()
+        private void DeleteGeneratedMealPlan()
         {
-            // Select food that meets criteria from user
-            // add that food to mealplanGenerateTable
-            // calculates mealplantotals from mealplanGenerateTable
-            // checks values against user entered macro goals
-            // continues to add food and loops through all checks until it is close to maxing out?
+            try
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                        @"select * from generatemealplan delete from generatemealplan where protein >= 0";
+                    var cmd = new SqlCommand(command.CommandText, connection);
+                    var dataAdapter = new SqlDataAdapter(cmd);
+                    var dataSet = new DataSet();
+                    dataAdapter.Fill(dataSet);
+                    dvgGenerateMealPlan.ReadOnly = true;
+                    dvgGenerateMealPlan.DataSource = dataSet.Tables[0];
+                    connection.Close();
+                }
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show(@"Error CREATING MEAL PLAN.");
+            }
         }
         private void ExportMealPlanToTextFile()
         {
             // Add functionality to export MealPlan table to txt file/pdf?
         }
+
+        private void UPDATEMacroDifference()
+        {
+            try
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                        @"select caclories, protein, carbs, fat, date from macrogoals t1 " +
+                        " where date = select max(date) from macrogoals t2 where t1.date = t2.date)";
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show(@"Error CREATING MEAL PLAN.");
+            }
+        }
+
         public MainNew()
         {
             InitializeComponent();
@@ -488,6 +591,7 @@ namespace Food_Planner_2
             UpdateMealPlan();
             UpdateMacroGoals();
             UpdateMealPlanTotals();
+            
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -565,6 +669,7 @@ namespace Food_Planner_2
             SubmitMacroGoalData();
             UpdateMacroGoals();
             UpdateMealPlanTotals();
+            
         }
         private void dgvDB_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -572,11 +677,21 @@ namespace Food_Planner_2
         }
         private void btnSubmitMeal_Click(object sender, EventArgs e)
         {
-            CreateMeal();
+            CreateMealPlanProtein();
+            UpdateMealPlanTotalsAfterGenerate();
         }
         private void dgvMealPlan_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DgvMealPlanPullData();
+        }
+        private void btnDeleteGenMealPlan_Click(object sender, EventArgs e)
+        {
+            DeleteGeneratedMealPlan();
+            UpdateMealPlanTotalsAfterGenerate();
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            UpdateMacroDifference();
         }
     }
 }
