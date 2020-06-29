@@ -79,6 +79,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GenerateMealPlan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerateMealPlan.Designer.cs">
+      <DependentUpon>GenerateMealPlan.cs</DependentUpon>
+    </Compile>
     <Compile Include="mainNew.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GenerateMealPlan.resx">
+      <DependentUpon>GenerateMealPlan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="mainNew.resx">
       <DependentUpon>mainNew.cs</DependentUpon>
     </EmbeddedResource>

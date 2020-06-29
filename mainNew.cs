@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Food_Planner_2
@@ -364,7 +365,6 @@ namespace Food_Planner_2
             var date = DateTime.Now;
             try
             {
-               
                 using (var connection = new SqlConnection(ConnectionString))
                 using (var command = connection.CreateCommand())
 
@@ -402,7 +402,6 @@ namespace Food_Planner_2
             lblMacroDiffProtein.Text = (goalProtein - totalProtein).ToString(CultureInfo.InvariantCulture);
             lblMacroDiffCarbs.Text = (goalCarbs - totalCarbs).ToString(CultureInfo.InvariantCulture);
             lblMacroDiffFat.Text = (goalFat - totalFat).ToString(CultureInfo.InvariantCulture);
-
         }
         private void DvgFoodSearchPullData()
         {
@@ -558,32 +557,61 @@ namespace Food_Planner_2
                 MessageBox.Show(@"Error CREATING MEAL PLAN.");
             }
         }
-        private void ExportMealPlanToTextFile()
-        {
-            // Add functionality to export MealPlan table to txt file/pdf?
-        }
-
-        private void UPDATEMacroDifference()
+        private void ExportMealPlan()
         {
             try
             {
+                var fileNamePart = tbMealPlanName.Text;
+                const string destinationFolder = @"C:\Users\stara\Desktop\LogFiles";
+                const string fileDelimiter = ",";
+                const string fileExtension = ".txt";
                 using (var connection = new SqlConnection(ConnectionString))
                 using (var command = connection.CreateCommand())
                 {
-                    command.CommandText =
-                        @"select caclories, protein, carbs, fat, date from macrogoals t1 " +
-                        " where date = select max(date) from macrogoals t2 where t1.date = t2.date)";
+                    command.CommandText = @"SELECT Name, count(*) as Servings FROM MEALPLAN group by name";
+                    var cmd = new SqlCommand(command.CommandText, connection);
                     connection.Open();
-                    command.ExecuteNonQuery();
+                    var dTable = new DataTable();
+                    dTable.Load(cmd.ExecuteReader());
                     connection.Close();
+                    var fileFullPath = destinationFolder + "\\" + fileNamePart  + fileExtension;
+                    StreamWriter streamWriter = null;
+                    streamWriter = new StreamWriter(fileFullPath, false);
+
+                    var columnCount = dTable.Columns.Count;
+                    for (var iColumn = 0; iColumn < columnCount; iColumn++)
+                    {
+                        streamWriter.Write(dTable.Columns[iColumn]);
+                        if (iColumn < columnCount - 1)
+                        {
+                            streamWriter.Write(fileDelimiter);
+                        }
+                    }
+                    streamWriter.Write(streamWriter.NewLine);
+                    foreach (DataRow dataRow in dTable.Rows)
+                    {
+                        for (var iRow = 0; iRow < columnCount; iRow++)
+                        {
+                            if (!Convert.IsDBNull(dataRow[iRow]))
+                            {
+                                streamWriter.Write(dataRow[iRow].ToString());
+                            }
+
+                            if (iRow < columnCount - 1)
+                            {
+                                streamWriter.Write(fileDelimiter);
+                            }
+                        }
+                        streamWriter.Write(streamWriter.NewLine);
+                    }
+                    streamWriter.Close();
                 }
             }
             catch (SqlException)
             {
-                MessageBox.Show(@"Error CREATING MEAL PLAN.");
+                MessageBox.Show(@"Error Exporting Meal Plan");
             }
         }
-
         public MainNew()
         {
             InitializeComponent();
@@ -591,7 +619,6 @@ namespace Food_Planner_2
             UpdateMealPlan();
             UpdateMacroGoals();
             UpdateMealPlanTotals();
-            
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -640,7 +667,6 @@ namespace Food_Planner_2
             AddToMealPlan();
             UpdateMealPlan();
             UpdateMealPlanTotals();
-            UpdateMacroDifference();
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -654,7 +680,6 @@ namespace Food_Planner_2
             DeleteFromMealPlan();
             UpdateMealPlan();
             UpdateMealPlanTotals();
-            UpdateMacroDifference();
         }
         private void btnFoodLimitSearch_Click(object sender, EventArgs e)
         {
@@ -689,7 +714,11 @@ namespace Food_Planner_2
             DeleteGeneratedMealPlan();
             UpdateMealPlanTotalsAfterGenerate();
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            ExportMealPlan();
+        }
+        private void btnMacroDiffCalc_Click(object sender, EventArgs e)
         {
             UpdateMacroDifference();
         }

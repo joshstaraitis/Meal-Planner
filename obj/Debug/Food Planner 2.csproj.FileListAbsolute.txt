@@ -26,3 +26,4 @@ C:\Users\stara\Desktop\MealPlanner-master\obj\Debug\Food Planner 2.exe.manifest
 C:\Users\stara\Desktop\MealPlanner-master\obj\Debug\Food Planner 2.application
 C:\Users\stara\Desktop\MealPlanner-master\obj\Debug\Food Planner 2.exe
 C:\Users\stara\Desktop\MealPlanner-master\obj\Debug\Food Planner 2.pdb
+C:\Users\stara\Desktop\MealPlanner-master\obj\Debug\Food_Planner_2.GenerateMealPlan.resources
