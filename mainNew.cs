@@ -9,19 +9,29 @@ namespace Food_Planner_2
 {
     public partial class MainNew : Form
     {
-        private const string ConnectionString = @"Data Source=JOSHPC\SQLEXPRESS;Initial Catalog=FoodTEST;Integrated Security=True;
+        // const string to hold connection string
+        // @ is used to interpret the string literally and to enhance readability 
+        public const string ConnectionString = @"Data Source=JOSHPC\SQLEXPRESS;Initial Catalog=FoodTEST;Integrated Security=True;
         Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         private void UpdateMealPlanTotals()
         {
             try
             {
+                // implemented using to help with resource management
+                // creates connection variable set to ConnectionString
+                // creates command variable that creates/returns a SqlCommand object associated with SqlConnection
                 using (var connection = new SqlConnection(ConnectionString))
                 using (var command = connection.CreateCommand())
                 {
+                    // sets sql statement to command variable
                     command.CommandText = @"SELECT SUM(calories) from mealplan";
+                    // opens database connection
                     connection.Open();
+                    // executes sql command 
                     command.ExecuteNonQuery();
+                    // sets result variable to sql single value from query
                     var result = command.ExecuteScalar();
+                    // sets lbl.Text to query result, converted to string
                     lblTotalCalories.Text = Convert.ToString(result);
 
                     command.CommandText = @"SELECT SUM(protein) from mealplan";
@@ -38,6 +48,21 @@ namespace Food_Planner_2
                     command.ExecuteNonQuery();
                     var result4 = command.ExecuteScalar();
                     lblTotalFat.Text = Convert.ToString(result4);
+                    // closes database connection
+                    connection.Close();
+
+                    /*
+                     ExecuteNonQuery() method:
+                     Is used to return number of rows affected by sql query. Can be used to perform catalog operations,
+                     or to change the data in database without using a DataSet by executing UPDATE, INSERT, or DELETE statements.
+                     Returns no rows. For UPDATE/INSET/DELETE statements, the return value is the number of rows affected by command. 
+                     For all other statements, the return value is -1
+
+                     ExecuteScalar() method:
+                     Executed the query, and returns the first column of the first row in the result set returned by query. 
+                     Additional columns and rows are ignored. Is used to retrieve a single value (ex: aggregate function) from
+                     a database. Requires less code than ExecuteReader method.
+                */
                 }
             }
             catch (SqlException)
@@ -49,16 +74,26 @@ namespace Food_Planner_2
         {
             try
             {
+                // creates connection variable set to ConnectionString
+                // creates command variable that creates/returns a SqlCommand object associated with SqlConnection
                 using (var connection = new SqlConnection(ConnectionString))
                 using (var command = connection.CreateCommand())
                 {
+                    // sets sql statement to command variable
                     command.CommandText = @"SELECT * FROM FOOD";
+                    // sets cmd variable to SqlCommand(commandText, ConnectionString)
                     var cmd = new SqlCommand(command.CommandText, connection);
+                    // sets dataAdapter variable to new SqlDataAdapter instance passing cmd 
                     var dataAdapter = new SqlDataAdapter(cmd);
+                    // sets dataSet variable to new DataSet instance
                     var dataSet = new DataSet();
+                    // fills dataSet with dataAdapter rows
                     dataAdapter.Fill(dataSet);
+                    // sets dvgDB to read only
                     dgvDB.ReadOnly = true;
+                    // sets collection of tables in dataSet to dgvDB dataSource
                     dgvDB.DataSource = dataSet.Tables[0];
+                    // closes database connection
                     connection.Close();
                 }
             }
@@ -203,11 +238,16 @@ namespace Food_Planner_2
         {
             try
             {
+                // creates connection variable set to ConnectionString
+                // creates command variable that creates/returns a SqlCommand object associated with SqlConnection
                 using (var connection = new SqlConnection(ConnectionString))
                 using (var command = connection.CreateCommand())
                 {
+                    // sets sql statement to command variable
                     command.CommandText = "INSERT INTO Food(Name, Serving, Calories, Protein, Carbs, Fat)" +
                         "VALUES(@Name, @Serving, @Calories, @Protein, @Carbs, @Fat)";
+                    // adds the value from txtBox to corresponding column in sql table.
+                    // using AddWithValue because the user specified its value
                     command.Parameters.AddWithValue("@Name", txtName.Text);
                     command.Parameters.AddWithValue("@Serving", txtServing.Text);
                     command.Parameters.AddWithValue("@Calories", txtCalories.Text);
@@ -405,22 +445,21 @@ namespace Food_Planner_2
         }
         private void DvgFoodSearchPullData()
         {
+            // set rowIndex variable to the index of the clicked datagridview row
             var rowIndex = dgvFoodSearch.CurrentCell.RowIndex;
-
+            // get value from column "Name" in row rowIndex
             var cellValueName = (string)dgvFoodSearch["Name", rowIndex].Value;
+            // set txt to cellValueName.value
             txtFoodSearchName.Text = cellValueName;
-
+            // get value from column "Name" in row rowIndex and running .ToString()
             var cellValueCalories = dgvFoodSearch["Calories", rowIndex].Value.ToString();
             txtFFCal.Text = cellValueCalories;
-
             var cellValueProtein = dgvFoodSearch["Protein", rowIndex].Value.ToString();
             txtFFProtein.Text = cellValueProtein;
-
             var cellValueCarbs = dgvFoodSearch["Carbs", rowIndex].Value.ToString();
             txtFFCarb.Text = cellValueCarbs;
-
             var cellValueFat = dgvFoodSearch["Fat", rowIndex].Value.ToString();
-            txtFFFat.Text = cellValueFat;  
+            txtFFFat.Text = cellValueFat;
         }
         private void DgvdbPullData()
         {
@@ -490,14 +529,19 @@ namespace Food_Planner_2
             txtFFCarb.Clear();
             txtFFFat.Clear();
             txtFFProtein.Clear();
-
         }
         private static bool Useraccept()
         {
+            // sets constant string to message variable
             const string message = "Are you sure you want to do this?";
+            // sets constant string to title variable
             const string title = "";
+            // sets constant MessageBoxButtons variable buttons to MessageBoxButtons.YesNo
+            // used to create messagebox with yes or no buttons
             const MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            // displays messagebox passing message, title, and yesno buttons
             var result = MessageBox.Show(message, title, buttons);
+            // submits if yes button is clicked, does NOT submit if no button is clicked
             return result == DialogResult.Yes;
         }
         private void CreateMealPlanProtein()
@@ -561,49 +605,76 @@ namespace Food_Planner_2
         {
             try
             {
-                var fileNamePart = tbMealPlanName.Text;
-                const string destinationFolder = @"C:\Users\stara\Desktop\LogFiles";
-                const string fileDelimiter = ",";
+                // create constant strings for file name, folder, delimiter and extension
+                var MealPlanName = tbMealPlanName.Text;
+                const string Folder = @"C:\Users\stara\Desktop\LogFiles";
+                const string Delimiter = ",";
                 const string fileExtension = ".txt";
+
+                // creates connection variable set to ConnectionString
+                // creates command variable that creates/returns a SqlCommand object associated with SqlConnection
                 using (var connection = new SqlConnection(ConnectionString))
                 using (var command = connection.CreateCommand())
                 {
+                    // sets sql statement to command variable
                     command.CommandText = @"SELECT Name, count(*) as Servings FROM MEALPLAN group by name";
+                    // sets cmd variable to SqlCommand(commandText, ConnectionString)
                     var cmd = new SqlCommand(command.CommandText, connection);
+                    // open database connection
                     connection.Open();
-                    var dTable = new DataTable();
-                    dTable.Load(cmd.ExecuteReader());
-                    connection.Close();
-                    var fileFullPath = destinationFolder + "\\" + fileNamePart  + fileExtension;
-                    StreamWriter streamWriter = null;
-                    streamWriter = new StreamWriter(fileFullPath, false);
+                    // create new DataTable object
+                    var dataTable = new DataTable();
 
-                    var columnCount = dTable.Columns.Count;
+                    // load dataTable with sql command data
+                    //ExecuteReader() method: Sends the CommandText to the Connection and builds a SqlDataReader.
+                    dataTable.Load(cmd.ExecuteReader());
+                    // close database connection
+                    connection.Close();
+                    // creates file path
+                    var filePath = Folder + "\\" + MealPlanName  + fileExtension;
+                    // creates textWriter for writing characters to file
+                    StreamWriter streamWriter = null;
+                    // creates StreamWriter(filePath, boolean) false boolean is used to prevent appending
+                    streamWriter = new StreamWriter(filePath, false);
+                    // counts columns in dataTable
+                    var columnCount = dataTable.Columns.Count;
+                    // sets icolumn count to 0; if icolumn is less than columnCount; icloumn++
                     for (var iColumn = 0; iColumn < columnCount; iColumn++)
                     {
-                        streamWriter.Write(dTable.Columns[iColumn]);
+                        // streamWriter writes columns from datatable to file
+                        streamWriter.Write(dataTable.Columns[iColumn]);
+                        // if icolumn is less than columnCount - 1
                         if (iColumn < columnCount - 1)
                         {
-                            streamWriter.Write(fileDelimiter);
+                            // streamWriter writes delimiter to file
+                            streamWriter.Write(Delimiter);
                         }
                     }
+                    // stream writer writes newline to file
                     streamWriter.Write(streamWriter.NewLine);
-                    foreach (DataRow dataRow in dTable.Rows)
+                    // foreach row in dataTable
+                    foreach (DataRow dataRow in dataTable.Rows)
                     {
+                        // sets iRow to 0; if iRow is less than columnCount; iRow++
                         for (var iRow = 0; iRow < columnCount; iRow++)
                         {
+                            // if dataTow is not empty
                             if (!Convert.IsDBNull(dataRow[iRow]))
                             {
+                                // print row to file and convert to string
                                 streamWriter.Write(dataRow[iRow].ToString());
                             }
-
+                            // if iRow is less than columnCount - 1
                             if (iRow < columnCount - 1)
                             {
-                                streamWriter.Write(fileDelimiter);
+                                // streamwriter writes delimiter to file
+                                streamWriter.Write(Delimiter);
                             }
                         }
+                        //// streamwriter writes newline to file
                         streamWriter.Write(streamWriter.NewLine);
                     }
+                    // close streamWriter
                     streamWriter.Close();
                 }
             }
@@ -660,7 +731,6 @@ namespace Food_Planner_2
             DeleteFoodFromDb();
             UpdateDb();
             ClearForm();
-
         }
         private void btnAddToMealPlan_Click(object sender, EventArgs e)
         {
@@ -694,7 +764,6 @@ namespace Food_Planner_2
             SubmitMacroGoalData();
             UpdateMacroGoals();
             UpdateMealPlanTotals();
-            
         }
         private void dgvDB_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
