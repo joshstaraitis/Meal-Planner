@@ -13,7 +13,7 @@ namespace Food_Planner_2
         // @ is used to interpret the string literally and to enhance readability 
         public const string ConnectionString = @"Data Source=JOSHPC\SQLEXPRESS;Initial Catalog=FoodTEST;Integrated Security=True;
         Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        private void UpdateMealPlanTotals()
+        public void UpdateMealPlanTotals()
         {
             try
             {
@@ -70,7 +70,7 @@ namespace Food_Planner_2
                 MessageBox.Show(@"Error updating Meal Plan Totals.");
             }
         }
-        private void UpdateDb()
+        public void UpdateDb()
         {
             try
             {
@@ -102,7 +102,7 @@ namespace Food_Planner_2
                 MessageBox.Show(@"Error updating Food Database View");
             }
         }
-        private void UpdateMealPlan()
+        public void UpdateMealPlan()
         {
             try
             {
@@ -124,7 +124,7 @@ namespace Food_Planner_2
                 MessageBox.Show(@"Error updating Meal Plan View");
             }
         }
-        private void UpdateMacroGoals()
+        public void UpdateMacroGoals()
         {
             try
             {
@@ -162,13 +162,13 @@ namespace Food_Planner_2
                 MessageBox.Show(@"Error updating Meal Plan Totals.");
             }
         }
-        private bool IsFoodSearchNameValid()
+        public bool IsFoodSearchNameValid()
         {
             if (txtFoodSearchName.Text != "") return true;
             MessageBox.Show(@"Please enter a food name to search.");
             return false;
         }
-        private bool IsAddFoodDataValid()
+        public bool IsAddFoodDataValid()
         {
             if (txtName.Text == "")
             {
@@ -202,7 +202,7 @@ namespace Food_Planner_2
             MessageBox.Show(@"Please enter fat.");
             return false;
         }
-        private static void DbConnectionTest()
+        public static void DbConnectionTest()
         {
             using (var connection = new SqlConnection(ConnectionString))
             using (connection.CreateCommand())
@@ -234,7 +234,7 @@ namespace Food_Planner_2
                 connection.Close();
             }
         }
-        private void SubmitDataFoodAdd()
+        public void SubmitDataFoodAdd()
         {
             try
             {
@@ -265,7 +265,7 @@ namespace Food_Planner_2
                 MessageBox.Show(txtName.Text + @" was NOT added to the database.");
             }
         }
-        private void UpdateMealPlanTotalsAfterGenerate()
+        public void UpdateMealPlanTotalsAfterGenerate()
         {
             try
             {
@@ -299,7 +299,7 @@ namespace Food_Planner_2
                 MessageBox.Show(@"Error updating Meal Plan Totals.");
             }
         }
-        private void DeleteFoodFromDb()
+        public void DeleteFoodFromDb()
         {
             try
             {
@@ -318,7 +318,7 @@ namespace Food_Planner_2
                 MessageBox.Show(@"Error deleting from food database.");
             }
         }
-        private void AddToMealPlan()
+        public void AddToMealPlan()
         {
             try
             {
@@ -336,7 +336,7 @@ namespace Food_Planner_2
                 MessageBox.Show(@"Error adding to meal plan.");
             }
         }
-        private void DeleteFromMealPlan()
+        public void DeleteFromMealPlan()
         {
             try
             {           
@@ -353,7 +353,7 @@ namespace Food_Planner_2
                 MessageBox.Show(@"Error deleting from meal plan.");
             }
         }
-        private void SearchDb()
+        public void SearchDb()
         {
             try
             {             
@@ -375,7 +375,7 @@ namespace Food_Planner_2
                 MessageBox.Show(@"Error searching food database.");
             }
         }
-        private void SearchDbWithConstraints()
+        public void SearchDbWithConstraints()
         {
             try
             {             
@@ -400,7 +400,7 @@ namespace Food_Planner_2
             }
 
         }
-        private void SubmitMacroGoalData()
+        public void SubmitMacroGoalData()
         {
             var date = DateTime.Now;
             try
@@ -427,7 +427,7 @@ namespace Food_Planner_2
             }
 
         }
-        private void UpdateMacroDifference()
+        public void UpdateMacroDifference()
         {
             var goalCal = Convert.ToDouble(lblGoalCal.Text);
             var totalCal = Convert.ToDouble(lblTotalCalories.Text);
@@ -443,7 +443,7 @@ namespace Food_Planner_2
             lblMacroDiffCarbs.Text = (goalCarbs - totalCarbs).ToString(CultureInfo.InvariantCulture);
             lblMacroDiffFat.Text = (goalFat - totalFat).ToString(CultureInfo.InvariantCulture);
         }
-        private void DvgFoodSearchPullData()
+        public void DvgFoodSearchPullData()
         {
             // set rowIndex variable to the index of the clicked datagridview row
             var rowIndex = dgvFoodSearch.CurrentCell.RowIndex;
@@ -461,7 +461,7 @@ namespace Food_Planner_2
             var cellValueFat = dgvFoodSearch["Fat", rowIndex].Value.ToString();
             txtFFFat.Text = cellValueFat;
         }
-        private void DgvdbPullData()
+        public void DgvdbPullData()
         {
             var rowIndex = dgvDB.CurrentCell.RowIndex;
 
@@ -480,7 +480,7 @@ namespace Food_Planner_2
             var cellValueFat = dgvDB["Fat", rowIndex].Value.ToString();
             txtFFFat.Text = cellValueFat;
         }
-        private void DgvMealPlanPullData()
+        public void DgvMealPlanPullData()
         {
             var rowIndex = dgvMealPlan.CurrentCell.RowIndex;
 
@@ -499,7 +499,7 @@ namespace Food_Planner_2
             var cellValueFat = dgvMealPlan["Fat", rowIndex].Value.ToString();
             txtFFFat.Text = cellValueFat;
         }
-        private static void DeleteMealPlan()
+        public static void DeleteMealPlan()
         {
             try
             {
@@ -516,7 +516,7 @@ namespace Food_Planner_2
                 MessageBox.Show(@"Error deleting from meal plan.");
             }
         }
-        private void ClearForm()
+        public void ClearForm()
         {
             txtName.Clear();
             txtServing.Clear();
@@ -530,7 +530,7 @@ namespace Food_Planner_2
             txtFFFat.Clear();
             txtFFProtein.Clear();
         }
-        private static bool Useraccept()
+        public static bool Useraccept()
         {
             // sets constant string to message variable
             const string message = "Are you sure you want to do this?";
@@ -544,7 +544,7 @@ namespace Food_Planner_2
             // submits if yes button is clicked, does NOT submit if no button is clicked
             return result == DialogResult.Yes;
         }
-        private void CreateMealPlanProtein()
+        public void CreateMealPlanProtein()
         {
             // select highest protein from food table where protein is <= lblGoalProtein.Text and insert into mealplangoals, update dvgGenerateMealPlan
             try
@@ -578,7 +578,7 @@ namespace Food_Planner_2
                 MessageBox.Show(@"Error CREATING MEAL PLAN.");
             }
         }
-        private void DeleteGeneratedMealPlan()
+        public void DeleteGeneratedMealPlan()
         {
             try
             {
@@ -601,14 +601,14 @@ namespace Food_Planner_2
                 MessageBox.Show(@"Error CREATING MEAL PLAN.");
             }
         }
-        private void ExportMealPlan()
+        public void ExportMealPlan()
         {
             try
             {
                 // create constant strings for file name, folder, delimiter and extension
-                var MealPlanName = tbMealPlanName.Text;
-                const string Folder = @"C:\Users\stara\Desktop\LogFiles";
-                const string Delimiter = ",";
+                var mealPlanName = tbMealPlanName.Text;
+                const string folder = @"C:\Users\stara\Desktop\LogFiles";
+                const string delimiter = ",";
                 const string fileExtension = ".txt";
 
                 // creates connection variable set to ConnectionString
@@ -631,7 +631,7 @@ namespace Food_Planner_2
                     // close database connection
                     connection.Close();
                     // creates file path
-                    var filePath = Folder + "\\" + MealPlanName  + fileExtension;
+                    var filePath = folder + "\\" + mealPlanName  + fileExtension;
                     // creates textWriter for writing characters to file
                     StreamWriter streamWriter = null;
                     // creates StreamWriter(filePath, boolean) false boolean is used to prevent appending
@@ -647,7 +647,7 @@ namespace Food_Planner_2
                         if (iColumn < columnCount - 1)
                         {
                             // streamWriter writes delimiter to file
-                            streamWriter.Write(Delimiter);
+                            streamWriter.Write(delimiter);
                         }
                     }
                     // stream writer writes newline to file
@@ -668,7 +668,7 @@ namespace Food_Planner_2
                             if (iRow < columnCount - 1)
                             {
                                 // streamwriter writes delimiter to file
-                                streamWriter.Write(Delimiter);
+                                streamWriter.Write(delimiter);
                             }
                         }
                         //// streamwriter writes newline to file

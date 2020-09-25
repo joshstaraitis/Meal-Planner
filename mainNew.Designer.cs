@@ -42,6 +42,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnMacroDiffCalc = new System.Windows.Forms.Button();
             this.lblMacroDiffFat = new System.Windows.Forms.Label();
             this.lblMacroDiffCarbs = new System.Windows.Forms.Label();
             this.lblMacroDiffProtein = new System.Windows.Forms.Label();
@@ -102,12 +103,10 @@
             this.btnSubmitMeal = new System.Windows.Forms.Button();
             this.dvgGenerateMealPlan = new System.Windows.Forms.DataGridView();
             this.btnDeleteGenMealPlan = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
-            this.btnMacroDiffCalc = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.label24 = new System.Windows.Forms.Label();
             this.tbMealPlanName = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMealPlan)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -181,10 +180,10 @@
             // 
             // btnDeleteMealPlan
             // 
-            this.btnDeleteMealPlan.Location = new System.Drawing.Point(392, 96);
+            this.btnDeleteMealPlan.Location = new System.Drawing.Point(376, 94);
             this.btnDeleteMealPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDeleteMealPlan.Name = "btnDeleteMealPlan";
-            this.btnDeleteMealPlan.Size = new System.Drawing.Size(166, 30);
+            this.btnDeleteMealPlan.Size = new System.Drawing.Size(161, 30);
             this.btnDeleteMealPlan.TabIndex = 4;
             this.btnDeleteMealPlan.Text = "Delete Meal Plan";
             this.btnDeleteMealPlan.UseVisualStyleBackColor = true;
@@ -287,6 +286,16 @@
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Meal Plan Information";
+            // 
+            // btnMacroDiffCalc
+            // 
+            this.btnMacroDiffCalc.Location = new System.Drawing.Point(555, 20);
+            this.btnMacroDiffCalc.Name = "btnMacroDiffCalc";
+            this.btnMacroDiffCalc.Size = new System.Drawing.Size(75, 104);
+            this.btnMacroDiffCalc.TabIndex = 35;
+            this.btnMacroDiffCalc.Text = "Calc Macro Diff";
+            this.btnMacroDiffCalc.UseVisualStyleBackColor = true;
+            this.btnMacroDiffCalc.Click += new System.EventHandler(this.btnMacroDiffCalc_Click);
             // 
             // lblMacroDiffFat
             // 
@@ -604,10 +613,10 @@
             // 
             // btnAddToMealPlan
             // 
-            this.btnAddToMealPlan.Location = new System.Drawing.Point(392, 23);
+            this.btnAddToMealPlan.Location = new System.Drawing.Point(376, 21);
             this.btnAddToMealPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAddToMealPlan.Name = "btnAddToMealPlan";
-            this.btnAddToMealPlan.Size = new System.Drawing.Size(166, 32);
+            this.btnAddToMealPlan.Size = new System.Drawing.Size(161, 32);
             this.btnAddToMealPlan.TabIndex = 43;
             this.btnAddToMealPlan.Text = "Add To Meal Plan";
             this.btnAddToMealPlan.UseVisualStyleBackColor = true;
@@ -615,10 +624,10 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(220, 94);
+            this.btnDelete.Location = new System.Drawing.Point(209, 93);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(166, 32);
+            this.btnDelete.Size = new System.Drawing.Size(161, 32);
             this.btnDelete.TabIndex = 42;
             this.btnDelete.Text = "Delete from DB";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -651,10 +660,10 @@
             // 
             // btnFoodSearch
             // 
-            this.btnFoodSearch.Location = new System.Drawing.Point(220, 19);
+            this.btnFoodSearch.Location = new System.Drawing.Point(209, 21);
             this.btnFoodSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnFoodSearch.Name = "btnFoodSearch";
-            this.btnFoodSearch.Size = new System.Drawing.Size(166, 32);
+            this.btnFoodSearch.Size = new System.Drawing.Size(161, 32);
             this.btnFoodSearch.TabIndex = 37;
             this.btnFoodSearch.Text = "Search For Food";
             this.btnFoodSearch.UseVisualStyleBackColor = true;
@@ -699,10 +708,10 @@
             // 
             // btnFoodLimitSearch
             // 
-            this.btnFoodLimitSearch.Location = new System.Drawing.Point(220, 57);
+            this.btnFoodLimitSearch.Location = new System.Drawing.Point(209, 57);
             this.btnFoodLimitSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnFoodLimitSearch.Name = "btnFoodLimitSearch";
-            this.btnFoodLimitSearch.Size = new System.Drawing.Size(166, 33);
+            this.btnFoodLimitSearch.Size = new System.Drawing.Size(161, 33);
             this.btnFoodLimitSearch.TabIndex = 54;
             this.btnFoodLimitSearch.Text = "Criteria Search";
             this.btnFoodLimitSearch.UseVisualStyleBackColor = true;
@@ -710,10 +719,10 @@
             // 
             // btnDeleteFromMealPlan
             // 
-            this.btnDeleteFromMealPlan.Location = new System.Drawing.Point(392, 60);
+            this.btnDeleteFromMealPlan.Location = new System.Drawing.Point(376, 58);
             this.btnDeleteFromMealPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDeleteFromMealPlan.Name = "btnDeleteFromMealPlan";
-            this.btnDeleteFromMealPlan.Size = new System.Drawing.Size(166, 32);
+            this.btnDeleteFromMealPlan.Size = new System.Drawing.Size(161, 32);
             this.btnDeleteFromMealPlan.TabIndex = 44;
             this.btnDeleteFromMealPlan.Text = "Delete From Meal Plan";
             this.btnDeleteFromMealPlan.UseVisualStyleBackColor = true;
@@ -828,7 +837,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(802, 1037);
+            this.label23.Location = new System.Drawing.Point(695, 928);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(83, 17);
             this.label23.TabIndex = 50;
@@ -836,14 +845,14 @@
             // 
             // tbMealName
             // 
-            this.tbMealName.Location = new System.Drawing.Point(892, 1034);
+            this.tbMealName.Location = new System.Drawing.Point(785, 925);
             this.tbMealName.Name = "tbMealName";
             this.tbMealName.Size = new System.Drawing.Size(100, 22);
             this.tbMealName.TabIndex = 51;
             // 
             // btnSubmitMeal
             // 
-            this.btnSubmitMeal.Location = new System.Drawing.Point(896, 1062);
+            this.btnSubmitMeal.Location = new System.Drawing.Point(789, 953);
             this.btnSubmitMeal.Name = "btnSubmitMeal";
             this.btnSubmitMeal.Size = new System.Drawing.Size(220, 23);
             this.btnSubmitMeal.TabIndex = 52;
@@ -856,30 +865,23 @@
             this.dvgGenerateMealPlan.AllowUserToAddRows = false;
             this.dvgGenerateMealPlan.AllowUserToDeleteRows = false;
             this.dvgGenerateMealPlan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dvgGenerateMealPlan.Location = new System.Drawing.Point(684, 687);
+            this.dvgGenerateMealPlan.Location = new System.Drawing.Point(403, 863);
             this.dvgGenerateMealPlan.Name = "dvgGenerateMealPlan";
             this.dvgGenerateMealPlan.ReadOnly = true;
             this.dvgGenerateMealPlan.RowHeadersWidth = 51;
             this.dvgGenerateMealPlan.RowTemplate.Height = 24;
-            this.dvgGenerateMealPlan.Size = new System.Drawing.Size(587, 327);
+            this.dvgGenerateMealPlan.Size = new System.Drawing.Size(239, 143);
             this.dvgGenerateMealPlan.TabIndex = 53;
             // 
             // btnDeleteGenMealPlan
             // 
-            this.btnDeleteGenMealPlan.Location = new System.Drawing.Point(896, 1092);
+            this.btnDeleteGenMealPlan.Location = new System.Drawing.Point(789, 983);
             this.btnDeleteGenMealPlan.Name = "btnDeleteGenMealPlan";
             this.btnDeleteGenMealPlan.Size = new System.Drawing.Size(220, 23);
             this.btnDeleteGenMealPlan.TabIndex = 54;
             this.btnDeleteGenMealPlan.Text = "DELETE";
             this.btnDeleteGenMealPlan.UseVisualStyleBackColor = true;
             this.btnDeleteGenMealPlan.Click += new System.EventHandler(this.btnDeleteGenMealPlan_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 57;
             // 
             // btnExport
             // 
@@ -891,16 +893,6 @@
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
-            // btnMacroDiffCalc
-            // 
-            this.btnMacroDiffCalc.Location = new System.Drawing.Point(555, 20);
-            this.btnMacroDiffCalc.Name = "btnMacroDiffCalc";
-            this.btnMacroDiffCalc.Size = new System.Drawing.Size(75, 104);
-            this.btnMacroDiffCalc.TabIndex = 35;
-            this.btnMacroDiffCalc.Text = "Calc Macro Diff";
-            this.btnMacroDiffCalc.UseVisualStyleBackColor = true;
-            this.btnMacroDiffCalc.Click += new System.EventHandler(this.btnMacroDiffCalc_Click);
-            // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.tbMealPlanName);
@@ -908,10 +900,17 @@
             this.groupBox7.Controls.Add(this.btnExport);
             this.groupBox7.Location = new System.Drawing.Point(27, 667);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(370, 105);
+            this.groupBox7.Size = new System.Drawing.Size(630, 105);
             this.groupBox7.TabIndex = 58;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Export Meal Plan";
+            // 
+            // tbMealPlanName
+            // 
+            this.tbMealPlanName.Location = new System.Drawing.Point(188, 31);
+            this.tbMealPlanName.Name = "tbMealPlanName";
+            this.tbMealPlanName.Size = new System.Drawing.Size(100, 22);
+            this.tbMealPlanName.TabIndex = 58;
             // 
             // label24
             // 
@@ -922,20 +921,12 @@
             this.label24.TabIndex = 57;
             this.label24.Text = "Meal Plan Name:";
             // 
-            // tbMealPlanName
-            // 
-            this.tbMealPlanName.Location = new System.Drawing.Point(188, 31);
-            this.tbMealPlanName.Name = "tbMealPlanName";
-            this.tbMealPlanName.Size = new System.Drawing.Size(100, 22);
-            this.tbMealPlanName.TabIndex = 58;
-            // 
             // MainNew
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1305, 1149);
+            this.ClientSize = new System.Drawing.Size(1305, 1304);
             this.Controls.Add(this.groupBox7);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnDeleteGenMealPlan);
             this.Controls.Add(this.dvgGenerateMealPlan);
             this.Controls.Add(this.btnSubmitMeal);
@@ -1049,7 +1040,6 @@
         private System.Windows.Forms.Button btnSubmitMeal;
         private System.Windows.Forms.DataGridView dvgGenerateMealPlan;
         private System.Windows.Forms.Button btnDeleteGenMealPlan;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnMacroDiffCalc;
         private System.Windows.Forms.GroupBox groupBox7;

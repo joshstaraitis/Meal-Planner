@@ -27,3 +27,18 @@ C:\Users\stara\Desktop\MealPlanner-master\obj\Debug\Food Planner 2.application
 C:\Users\stara\Desktop\MealPlanner-master\obj\Debug\Food Planner 2.exe
 C:\Users\stara\Desktop\MealPlanner-master\obj\Debug\Food Planner 2.pdb
 C:\Users\stara\Desktop\MealPlanner-master\obj\Debug\Food_Planner_2.GenerateMealPlan.resources
+F:\MealPlanner-master\bin\Debug\Food Planner 2.exe.config
+F:\MealPlanner-master\bin\Debug\Food Planner 2.exe.manifest
+F:\MealPlanner-master\bin\Debug\Food Planner 2.application
+F:\MealPlanner-master\bin\Debug\Food Planner 2.exe
+F:\MealPlanner-master\bin\Debug\Food Planner 2.pdb
+F:\MealPlanner-master\obj\Debug\Food Planner 2.csprojAssemblyReference.cache
+F:\MealPlanner-master\obj\Debug\Food_Planner_2.GenerateMealPlan.resources
+F:\MealPlanner-master\obj\Debug\Food_Planner_2.MainNew.resources
+F:\MealPlanner-master\obj\Debug\Food_Planner_2.Properties.Resources.resources
+F:\MealPlanner-master\obj\Debug\Food Planner 2.csproj.GenerateResource.cache
+F:\MealPlanner-master\obj\Debug\Food Planner 2.csproj.CoreCompileInputs.cache
+F:\MealPlanner-master\obj\Debug\Food Planner 2.exe.manifest
+F:\MealPlanner-master\obj\Debug\Food Planner 2.application
+F:\MealPlanner-master\obj\Debug\Food Planner 2.exe
+F:\MealPlanner-master\obj\Debug\Food Planner 2.pdb
